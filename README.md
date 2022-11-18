@@ -1,4 +1,4 @@
 # LearningNotes
 学习笔记
 
-Myname is Tom.
+My name is Tom.
