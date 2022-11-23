@@ -31,14 +31,16 @@
 * WPA2协议流程。
 
 #### 802.1x
-    ![](pic_freeradius/2022-11-18-15-23-23.png)
-    有三个角色，`supplicant`(请求者), `authenticator`(认证者), `authentication server`(认证服务器)
-    * supplicant
-        必须提供密码或证书。实现软件主要是`wpa_supplicant`。
-    * 验证者
-        转发凭证
-    * 验证服务器
-        决定是否允许接入。实现软件主要是`freeradius`。
+![](pic_freeradius/2022-11-18-15-23-23.png)
+有三个角色，`supplicant`(请求者), `authenticator`(认证者), `authentication server`(认证服务器)
+* supplicant
+    必须提供密码或证书。实现软件主要是`wpa_supplicant`。
+* 验证者
+    转发凭证
+* 验证服务器
+    决定是否允许接入。实现软件主要是`freeradius`。
+![](pic_freeradius/2022-11-19-11-23-00.png)
+
 
 ## freeradius
 FreeRADIUS is the most popular open source RADIUS server[3] and the most widely deployed RADIUS server in the world.

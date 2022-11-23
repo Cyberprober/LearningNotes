@@ -36,6 +36,12 @@ tcpdump 使用`BPF`来过滤包,
   * -n 不用主机名，用ip
   * -e 包括`ethernet net`信息，显示MAC地址
 
+## tcpdump 配合 wireshark
+Older versions of tcpdump truncate packets to 68 or 96 bytes. If this is the case, use -s to capture full-sized packets
+老版本的tcpdump会把包截到68到96字节，可以用`-s`命令来捕获全部的包。
+sudo tcpdump -s 65535 -i ens4 port 1812 -w my_pcap.pcap
+
+
 ## 其它的网络管理工具
 ping, dig/nslookup, ss/netstat, ifconfig,  ip, arp, ngrep, traceroute/mtr, nc, telnet, ssh, sysctl
 network manager, openvpn 
