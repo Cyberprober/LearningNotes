@@ -71,4 +71,27 @@ User-ID system 仍是基于IP来配置防火墙。ephemeral IP-to-User mappings 
     kvm没有设置桥接模式，无法访问 虚拟机
     让外部可以访问vm
 
+* 直接在有线上进行尝试就好
+  * [ ] 配置合适的openwrt虚拟机
+     标准，可以访问网页，
+  * [ ] 尝试在有线链接上应用openwrt
 
+
+* Run OpenWRT on QEMU
+[Run OpenWrt on QEMU/KVM](https://www.youtube.com/watch?v=HAC7sn4orf0)
+该视频，在QEMU/KVM上安装了openwrt， 并使其可以访问控制网页
+  1. 配置 openwrt 允许ssh远程访问
+    [Dropbear configuration](https://openwrt.org/docs/guide-user/base-system/dropbear)
+
+[OpenWrt in QEMU](https://openwrt.org/docs/guide-user/virtualization/qemu)
+
+1. 安装QEMU
+2. x86-64下的OpenWrt
+  The x86-64 target has support for ESXi images by default.
+   1. 准备
+   2. 配置样例
+   3. 网络配置
+   4. 为OpenWrt 提供网络
+   5. 接入LUCI
+   6. 转发主机的端口
+   7. 使用KVM igb网卡

@@ -7,7 +7,7 @@
 ### 为什么要部署到host network
 > And from the LAN perspective, if you were to sniff the traffic, you would see the traffic coming from the host machine itself rather than the VM. 
 
-在NAT模式下，包来自`host`，而不是`vm`。
+在NAT模式下，从主机外看，网络包来自`host`，而不是`vm`。
 
 > But the problem with this type of network is that you cannot connect to your virtual machine from your LAN or from your host machines where the virtual machines are running.
 
@@ -179,11 +179,26 @@ virsh net-list --all
 ### KVM Guest OS
 最后一步，配置KVM虚拟机使用网桥
 
+
+### 结果
+可以了，并没有进行什么操作，只是重启了下电脑？
+执行`dhcpclient`获取ip
+![](pic_virtual_network/2022-11-24-13-14-56.png)
+
+使用的是 radius 虚拟机，192.168.5.1/24 是路由器的局域网。
+`virshi edit`方法，和 GUI配置应当都是一个效果。
+
+用手机连接成功。
+![](pic_virtual_network/2022-11-24-13-49-19.png)
+
 ### 参考资料
 [KVM: Creating a bridged network with NetPlan on Ubuntu 22.04](https://fabianlee.org/2022/09/20/kvm-creating-a-bridged-network-with-netplan-on-ubuntu-22-04/#switchtonetplan)
 还是不行，虚拟机内部的桥接使用网络
 * 猜测原因
-  * [ ] 虚拟机创建方式的不同
+  * [x] 虚拟机创建方式的不同
     逐步验证，确保操作并没有出错。
     在本机重新创建虚拟尝试
-  * [ ] ubuntu版本的不同
+    与虚拟机的创建方式无关
+  * [x] ubuntu版本的不同
+    与ubuntu 版本无关
+  * [x] 与外接网卡无关
