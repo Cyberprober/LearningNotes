@@ -39,7 +39,10 @@ tcpdump 使用`BPF`来过滤包,
 ## tcpdump 配合 wireshark
 Older versions of tcpdump truncate packets to 68 or 96 bytes. If this is the case, use -s to capture full-sized packets
 老版本的tcpdump会把包截到68到96字节，可以用`-s`命令来捕获全部的包。
-sudo tcpdump -s 65535 -i ens4 port 1812 -w my_pcap.pcap
+`sudo tcpdump -s 65535 -i ens4 port 1812 -w my_pcap.pcap`
+
+802.1x协议抓包示例
+
 
 
 ## 其它的网络管理工具
