@@ -54,6 +54,7 @@ MAC-user, MAC-IP
 
 the RADIUS accounting information has exactly the information I need for the Palo Alto User-ID system.
 [RadiUID: Palo Alto User-ID and RADIUS](https://packetpushers.net/radiuid/)   
+看起来很有用，判断能否移至
 
 User-ID system 仍是基于IP来配置防火墙。ephemeral IP-to-User mappings 来源于身份认证系统，如radius.
 

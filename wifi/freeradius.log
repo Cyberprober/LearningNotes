@@ -1,0 +1,2439 @@
+Listening on auth address 127.0.0.1 port 18120 bound to server inner-tunnel
+Listening on auth address * port 1812 bound to server default
+Listening on acct address * port 1813 bound to server default
+Listening on auth address :: port 1812 bound to server default
+Listening on acct address :: port 1813 bound to server default
+Listening on proxy address * port 57552
+Listening on proxy address :: port 33283
+Ready to process requests
+(0) Received Access-Request Id 48 from 192.168.5.1:47265 to 192.168.5.174:1812 length 183
+(0)   User-Name = "bob"
+(0)   Called-Station-Id = "56-D3-77-67-89-BF:OpenWrt"
+(0)   NAS-Port-Type = Wireless-802.11
+(0)   Service-Type = Framed-User
+(0)   NAS-Port = 1
+(0)   Calling-Station-Id = "C2-15-DA-68-A8-5D"
+(0)   Connect-Info = "CONNECT 54Mbps 802.11g"
+(0)   Acct-Session-Id = "C9A4591CB8FA224D"
+(0)   WLAN-Pairwise-Cipher = 1027076
+(0)   WLAN-Group-Cipher = 1027076
+(0)   WLAN-AKM-Suite = 1027073
+(0)   Framed-MTU = 1400
+(0)   EAP-Message = 0x0282000801626f62
+(0)   Message-Authenticator = 0x44bc19b13ccfc9fef0f00bebb07e384b
+(0) # Executing section authorize from file /etc/freeradius/3.0/sites-enabled/default
+(0)   authorize {
+(0)     policy filter_username {
+(0)       if (&User-Name) {
+(0)       if (&User-Name)  -> TRUE
+(0)       if (&User-Name)  {
+(0)         if (&User-Name =~ / /) {
+(0)         if (&User-Name =~ / /)  -> FALSE
+(0)         if (&User-Name =~ /@[^@]*@/ ) {
+(0)         if (&User-Name =~ /@[^@]*@/ )  -> FALSE
+(0)         if (&User-Name =~ /\.\./ ) {
+(0)         if (&User-Name =~ /\.\./ )  -> FALSE
+(0)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))  {
+(0)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))   -> FALSE
+(0)         if (&User-Name =~ /\.$/)  {
+(0)         if (&User-Name =~ /\.$/)   -> FALSE
+(0)         if (&User-Name =~ /@\./)  {
+(0)         if (&User-Name =~ /@\./)   -> FALSE
+(0)       } # if (&User-Name)  = notfound
+(0)     } # policy filter_username = notfound
+(0)     [preprocess] = ok
+(0)     [chap] = noop
+(0)     [mschap] = noop
+(0)     [digest] = noop
+(0) suffix: Checking for suffix after "@"
+(0) suffix: No '@' in User-Name = "bob", looking up realm NULL
+(0) suffix: No such realm "NULL"
+(0)     [suffix] = noop
+(0) eap: Peer sent EAP Response (code 2) ID 130 length 8
+(0) eap: EAP-Identity reply, returning 'ok' so we can short-circuit the rest of authorize
+(0)     [eap] = ok
+(0)   } # authorize = ok
+(0) Found Auth-Type = eap
+(0) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(0)   authenticate {
+(0) eap: Peer sent packet with method EAP Identity (1)
+(0) eap: Calling submodule eap_md5 to process data
+(0) eap_md5: Issuing MD5 Challenge
+(0) eap: Sending EAP Request (code 1) ID 131 length 22
+(0) eap: EAP session adding &reply:State = 0x81a2a84c8121ac4b
+(0)     [eap] = handled
+(0)   } # authenticate = handled
+(0) Using Post-Auth-Type Challenge
+(0) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(0)   Challenge { ... } # empty sub-section is ignored
+(0) Sent Access-Challenge Id 48 from 192.168.5.174:1812 to 192.168.5.1:47265 length 0
+(0)   EAP-Message = 0x0183001604108e703ded8646bc9c716242f4ea2f14dc
+(0)   Message-Authenticator = 0x00000000000000000000000000000000
+(0)   State = 0x81a2a84c8121ac4bb96d551ea535a6f4
+(0) Finished request
+Waking up in 4.9 seconds.
+(1) Received Access-Request Id 49 from 192.168.5.1:47265 to 192.168.5.174:1812 length 199
+(1)   User-Name = "bob"
+(1)   Called-Station-Id = "56-D3-77-67-89-BF:OpenWrt"
+(1)   NAS-Port-Type = Wireless-802.11
+(1)   Service-Type = Framed-User
+(1)   NAS-Port = 1
+(1)   Calling-Station-Id = "C2-15-DA-68-A8-5D"
+(1)   Connect-Info = "CONNECT 54Mbps 802.11g"
+(1)   Acct-Session-Id = "C9A4591CB8FA224D"
+(1)   WLAN-Pairwise-Cipher = 1027076
+(1)   WLAN-Group-Cipher = 1027076
+(1)   WLAN-AKM-Suite = 1027073
+(1)   Framed-MTU = 1400
+(1)   EAP-Message = 0x028300060319
+(1)   State = 0x81a2a84c8121ac4bb96d551ea535a6f4
+(1)   Message-Authenticator = 0xf1d460360ef1d024d576486f5cf0ac5b
+(1) session-state: No cached attributes
+(1) # Executing section authorize from file /etc/freeradius/3.0/sites-enabled/default
+(1)   authorize {
+(1)     policy filter_username {
+(1)       if (&User-Name) {
+(1)       if (&User-Name)  -> TRUE
+(1)       if (&User-Name)  {
+(1)         if (&User-Name =~ / /) {
+(1)         if (&User-Name =~ / /)  -> FALSE
+(1)         if (&User-Name =~ /@[^@]*@/ ) {
+(1)         if (&User-Name =~ /@[^@]*@/ )  -> FALSE
+(1)         if (&User-Name =~ /\.\./ ) {
+(1)         if (&User-Name =~ /\.\./ )  -> FALSE
+(1)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))  {
+(1)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))   -> FALSE
+(1)         if (&User-Name =~ /\.$/)  {
+(1)         if (&User-Name =~ /\.$/)   -> FALSE
+(1)         if (&User-Name =~ /@\./)  {
+(1)         if (&User-Name =~ /@\./)   -> FALSE
+(1)       } # if (&User-Name)  = notfound
+(1)     } # policy filter_username = notfound
+(1)     [preprocess] = ok
+(1)     [chap] = noop
+(1)     [mschap] = noop
+(1)     [digest] = noop
+(1) suffix: Checking for suffix after "@"
+(1) suffix: No '@' in User-Name = "bob", looking up realm NULL
+(1) suffix: No such realm "NULL"
+(1)     [suffix] = noop
+(1) eap: Peer sent EAP Response (code 2) ID 131 length 6
+(1) eap: No EAP Start, assuming it's an on-going EAP conversation
+(1)     [eap] = updated
+(1) sql: EXPAND %{User-Name}
+(1) sql:    --> bob
+(1) sql: SQL-User-Name set to 'bob'
+rlm_sql (sql): Closing connection (1): Hit idle_timeout, was idle for 130 seconds
+rlm_sql_mysql: Socket destructor called, closing socket
+rlm_sql (sql): Closing connection (2): Hit idle_timeout, was idle for 130 seconds
+rlm_sql_mysql: Socket destructor called, closing socket
+rlm_sql (sql): Closing connection (3): Hit idle_timeout, was idle for 130 seconds
+rlm_sql_mysql: Socket destructor called, closing socket
+rlm_sql (sql): Closing connection (4): Hit idle_timeout, was idle for 130 seconds
+rlm_sql (sql): You probably need to lower "min"
+rlm_sql_mysql: Socket destructor called, closing socket
+rlm_sql (sql): Closing connection (0): Hit idle_timeout, was idle for 130 seconds
+rlm_sql (sql): You probably need to lower "min"
+rlm_sql_mysql: Socket destructor called, closing socket
+rlm_sql (sql): Closing connection (5): Hit idle_timeout, was idle for 130 seconds
+rlm_sql (sql): You probably need to lower "min"
+rlm_sql_mysql: Socket destructor called, closing socket
+rlm_sql (sql): 0 of 0 connections in use.  You  may need to increase "spare"
+rlm_sql (sql): Opening additional connection (6), 1 of 32 pending slots used
+rlm_sql_mysql: Starting connect to MySQL server
+rlm_sql_mysql: Connected to database 'radius' on Localhost via UNIX socket, server version 5.5.5-10.3.34-MariaDB-0ubuntu0.20.04.1, protocol version 10
+rlm_sql (sql): Reserved connection (6)
+(1) sql: EXPAND SELECT id, username, attribute, value, op FROM radcheck WHERE username = '%{SQL-User-Name}' ORDER BY id
+(1) sql:    --> SELECT id, username, attribute, value, op FROM radcheck WHERE username = 'bob' ORDER BY id
+(1) sql: Executing select query: SELECT id, username, attribute, value, op FROM radcheck WHERE username = 'bob' ORDER BY id
+(1) sql: User found in radcheck table
+(1) sql: Conditional check items matched, merging assignment check items
+(1) sql:   Cleartext-Password := "hello"
+(1) sql: EXPAND SELECT id, username, attribute, value, op FROM radreply WHERE username = '%{SQL-User-Name}' ORDER BY id
+(1) sql:    --> SELECT id, username, attribute, value, op FROM radreply WHERE username = 'bob' ORDER BY id
+(1) sql: Executing select query: SELECT id, username, attribute, value, op FROM radreply WHERE username = 'bob' ORDER BY id
+rlm_sql (sql): 1 of 1 connections in use.  You  may need to increase "spare"
+rlm_sql (sql): Opening additional connection (7), 1 of 31 pending slots used
+rlm_sql_mysql: Starting connect to MySQL server
+rlm_sql_mysql: Connected to database 'radius' on Localhost via UNIX socket, server version 5.5.5-10.3.34-MariaDB-0ubuntu0.20.04.1, protocol version 10
+rlm_sql (sql): Reserved connection (7)
+rlm_sql (sql): Released connection (7)
+Need 1 more connections to reach min connections (3)
+rlm_sql (sql): Opening additional connection (8), 1 of 30 pending slots used
+rlm_sql_mysql: Starting connect to MySQL server
+rlm_sql_mysql: Connected to database 'radius' on Localhost via UNIX socket, server version 5.5.5-10.3.34-MariaDB-0ubuntu0.20.04.1, protocol version 10
+(1) sql: EXPAND SELECT groupname FROM radusergroup WHERE username = '%{SQL-User-Name}' ORDER BY priority
+(1) sql:    --> SELECT groupname FROM radusergroup WHERE username = 'bob' ORDER BY priority
+(1) sql: Executing select query: SELECT groupname FROM radusergroup WHERE username = 'bob' ORDER BY priority
+(1) sql: User not found in any groups
+rlm_sql (sql): Released connection (6)
+(1)     [sql] = ok
+(1)     [expiration] = noop
+(1)     [logintime] = noop
+(1) pap: WARNING: Auth-Type already set.  Not setting to PAP
+(1)     [pap] = noop
+(1)   } # authorize = updated
+(1) Found Auth-Type = eap
+(1) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(1)   authenticate {
+(1) eap: Expiring EAP session with state 0x81a2a84c8121ac4b
+(1) eap: Finished EAP session with state 0x81a2a84c8121ac4b
+(1) eap: Previous EAP request found for state 0x81a2a84c8121ac4b, released from the list
+(1) eap: Peer sent packet with method EAP NAK (3)
+(1) eap: Found mutually acceptable type PEAP (25)
+(1) eap: Calling submodule eap_peap to process data
+(1) eap_peap: Initiating new TLS session
+(1) eap_peap: [eaptls start] = request
+(1) eap: Sending EAP Request (code 1) ID 132 length 6
+(1) eap: EAP session adding &reply:State = 0x81a2a84c8026b14b
+(1)     [eap] = handled
+(1)   } # authenticate = handled
+(1) Using Post-Auth-Type Challenge
+(1) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(1)   Challenge { ... } # empty sub-section is ignored
+(1) Sent Access-Challenge Id 49 from 192.168.5.174:1812 to 192.168.5.1:47265 length 0
+(1)   EAP-Message = 0x018400061920
+(1)   Message-Authenticator = 0x00000000000000000000000000000000
+(1)   State = 0x81a2a84c8026b14bb96d551ea535a6f4
+(1) Finished request
+Waking up in 4.9 seconds.
+(2) Received Access-Request Id 50 from 192.168.5.1:47265 to 192.168.5.174:1812 length 334
+(2)   User-Name = "bob"
+(2)   Called-Station-Id = "56-D3-77-67-89-BF:OpenWrt"
+(2)   NAS-Port-Type = Wireless-802.11
+(2)   Service-Type = Framed-User
+(2)   NAS-Port = 1
+(2)   Calling-Station-Id = "C2-15-DA-68-A8-5D"
+(2)   Connect-Info = "CONNECT 54Mbps 802.11g"
+(2)   Acct-Session-Id = "C9A4591CB8FA224D"
+(2)   WLAN-Pairwise-Cipher = 1027076
+(2)   WLAN-Group-Cipher = 1027076
+(2)   WLAN-AKM-Suite = 1027073
+(2)   Framed-MTU = 1400
+(2)   EAP-Message = 0x0284008d198000000083160301007e0100007a03033d4e34c5c1f79e6b80d44e4375d2b1d592469536c1ebe30393d5d644d12907f800001ec02bc02fc02cc030cca9cca8c009c013c00ac014009c009d002f0035000a0100003300170000ff01000100000a00080006001d00170018000b00020100000d00140012040308040401050308050501080606010201
+(2)   State = 0x81a2a84c8026b14bb96d551ea535a6f4
+(2)   Message-Authenticator = 0x136921ffe1b845465e2fa404d60d1aca
+(2) session-state: No cached attributes
+(2) # Executing section authorize from file /etc/freeradius/3.0/sites-enabled/default
+(2)   authorize {
+(2)     policy filter_username {
+(2)       if (&User-Name) {
+(2)       if (&User-Name)  -> TRUE
+(2)       if (&User-Name)  {
+(2)         if (&User-Name =~ / /) {
+(2)         if (&User-Name =~ / /)  -> FALSE
+(2)         if (&User-Name =~ /@[^@]*@/ ) {
+(2)         if (&User-Name =~ /@[^@]*@/ )  -> FALSE
+(2)         if (&User-Name =~ /\.\./ ) {
+(2)         if (&User-Name =~ /\.\./ )  -> FALSE
+(2)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))  {
+(2)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))   -> FALSE
+(2)         if (&User-Name =~ /\.$/)  {
+(2)         if (&User-Name =~ /\.$/)   -> FALSE
+(2)         if (&User-Name =~ /@\./)  {
+(2)         if (&User-Name =~ /@\./)   -> FALSE
+(2)       } # if (&User-Name)  = notfound
+(2)     } # policy filter_username = notfound
+(2)     [preprocess] = ok
+(2)     [chap] = noop
+(2)     [mschap] = noop
+(2)     [digest] = noop
+(2) suffix: Checking for suffix after "@"
+(2) suffix: No '@' in User-Name = "bob", looking up realm NULL
+(2) suffix: No such realm "NULL"
+(2)     [suffix] = noop
+(2) eap: Peer sent EAP Response (code 2) ID 132 length 141
+(2) eap: Continuing tunnel setup
+(2)     [eap] = ok
+(2)   } # authorize = ok
+(2) Found Auth-Type = eap
+(2) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(2)   authenticate {
+(2) eap: Expiring EAP session with state 0x81a2a84c8026b14b
+(2) eap: Finished EAP session with state 0x81a2a84c8026b14b
+(2) eap: Previous EAP request found for state 0x81a2a84c8026b14b, released from the list
+(2) eap: Peer sent packet with method EAP PEAP (25)
+(2) eap: Calling submodule eap_peap to process data
+(2) eap_peap: Continuing EAP-TLS
+(2) eap_peap: Peer indicated complete TLS record size will be 131 bytes
+(2) eap_peap: Got complete TLS record (131 bytes)
+(2) eap_peap: [eaptls verify] = length included
+(2) eap_peap: (other): before SSL initialization
+(2) eap_peap: TLS_accept: before SSL initialization
+(2) eap_peap: TLS_accept: before SSL initialization
+(2) eap_peap: <<< recv TLS 1.3  [length 007e]
+(2) eap_peap: TLS_accept: SSLv3/TLS read client hello
+(2) eap_peap: >>> send TLS 1.2  [length 003d]
+(2) eap_peap: TLS_accept: SSLv3/TLS write server hello
+(2) eap_peap: >>> send TLS 1.2  [length 02ea]
+(2) eap_peap: TLS_accept: SSLv3/TLS write certificate
+(2) eap_peap: >>> send TLS 1.2  [length 014d]
+(2) eap_peap: TLS_accept: SSLv3/TLS write key exchange
+(2) eap_peap: >>> send TLS 1.2  [length 0004]
+(2) eap_peap: TLS_accept: SSLv3/TLS write server done
+(2) eap_peap: TLS_accept: Need to read more data: SSLv3/TLS write server done
+(2) eap_peap: TLS - In Handshake Phase
+(2) eap_peap: TLS - got 1164 bytes of data
+(2) eap_peap: [eaptls process] = handled
+(2) eap: Sending EAP Request (code 1) ID 133 length 1004
+(2) eap: EAP session adding &reply:State = 0x81a2a84c8327b14b
+(2)     [eap] = handled
+(2)   } # authenticate = handled
+(2) Using Post-Auth-Type Challenge
+(2) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(2)   Challenge { ... } # empty sub-section is ignored
+(2) Sent Access-Challenge Id 50 from 192.168.5.174:1812 to 192.168.5.1:47265 length 0
+(2)   EAP-Message = 0x018503ec19c00000048c160303003d020000390303a1c110bffa9a3c9bed679e529e33801d1b3c269b194f4c8d39c70bb34438a4b900c02f000011ff01000100000b0004030001020017000016030302ea0b0002e60002e30002e0308202dc308201c4a003020102021403107f3684e9d35f6585b223cfd04fcf812cc81e300d06092a864886f70d01010b050030153113301106035504030c0a636f6e74726f6c6c6572301e170d3232313131333037303132325a170d3332313131303037303132325a30153113301106035504030c0a636f6e74726f6c6c657230820122300d06092a864886f70d01010105000382010f003082010a0282010100f49fd56d2f89bbdf82313311469b397ef54a28d9bebb6b34ca66b2b40a120e167f1580072215847be08d1195a51e01cffdf7f5146adec596a6569e06fa898338d63a3e6e6dc78b77f0a2960d2a21a4179ee4e4f3ca689f3cb0704b2d83c543257d86196e279f9b64dcec4bbf1b880fe392e312d2f4616ea0a938c8
+(2)   Message-Authenticator = 0x00000000000000000000000000000000
+(2)   State = 0x81a2a84c8327b14bb96d551ea535a6f4
+(2) Finished request
+Waking up in 4.9 seconds.
+(3) Received Access-Request Id 51 from 192.168.5.1:47265 to 192.168.5.174:1812 length 199
+(3)   User-Name = "bob"
+(3)   Called-Station-Id = "56-D3-77-67-89-BF:OpenWrt"
+(3)   NAS-Port-Type = Wireless-802.11
+(3)   Service-Type = Framed-User
+(3)   NAS-Port = 1
+(3)   Calling-Station-Id = "C2-15-DA-68-A8-5D"
+(3)   Connect-Info = "CONNECT 54Mbps 802.11g"
+(3)   Acct-Session-Id = "C9A4591CB8FA224D"
+(3)   WLAN-Pairwise-Cipher = 1027076
+(3)   WLAN-Group-Cipher = 1027076
+(3)   WLAN-AKM-Suite = 1027073
+(3)   Framed-MTU = 1400
+(3)   EAP-Message = 0x028500061900
+(3)   State = 0x81a2a84c8327b14bb96d551ea535a6f4
+(3)   Message-Authenticator = 0xa6726bb6f6206d74ffba9e8a6d75a023
+(3) session-state: No cached attributes
+(3) # Executing section authorize from file /etc/freeradius/3.0/sites-enabled/default
+(3)   authorize {
+(3)     policy filter_username {
+(3)       if (&User-Name) {
+(3)       if (&User-Name)  -> TRUE
+(3)       if (&User-Name)  {
+(3)         if (&User-Name =~ / /) {
+(3)         if (&User-Name =~ / /)  -> FALSE
+(3)         if (&User-Name =~ /@[^@]*@/ ) {
+(3)         if (&User-Name =~ /@[^@]*@/ )  -> FALSE
+(3)         if (&User-Name =~ /\.\./ ) {
+(3)         if (&User-Name =~ /\.\./ )  -> FALSE
+(3)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))  {
+(3)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))   -> FALSE
+(3)         if (&User-Name =~ /\.$/)  {
+(3)         if (&User-Name =~ /\.$/)   -> FALSE
+(3)         if (&User-Name =~ /@\./)  {
+(3)         if (&User-Name =~ /@\./)   -> FALSE
+(3)       } # if (&User-Name)  = notfound
+(3)     } # policy filter_username = notfound
+(3)     [preprocess] = ok
+(3)     [chap] = noop
+(3)     [mschap] = noop
+(3)     [digest] = noop
+(3) suffix: Checking for suffix after "@"
+(3) suffix: No '@' in User-Name = "bob", looking up realm NULL
+(3) suffix: No such realm "NULL"
+(3)     [suffix] = noop
+(3) eap: Peer sent EAP Response (code 2) ID 133 length 6
+(3) eap: Continuing tunnel setup
+(3)     [eap] = ok
+(3)   } # authorize = ok
+(3) Found Auth-Type = eap
+(3) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(3)   authenticate {
+(3) eap: Expiring EAP session with state 0x81a2a84c8327b14b
+(3) eap: Finished EAP session with state 0x81a2a84c8327b14b
+(3) eap: Previous EAP request found for state 0x81a2a84c8327b14b, released from the list
+(3) eap: Peer sent packet with method EAP PEAP (25)
+(3) eap: Calling submodule eap_peap to process data
+(3) eap_peap: Continuing EAP-TLS
+(3) eap_peap: Peer ACKed our handshake fragment
+(3) eap_peap: [eaptls verify] = request
+(3) eap_peap: [eaptls process] = handled
+(3) eap: Sending EAP Request (code 1) ID 134 length 176
+(3) eap: EAP session adding &reply:State = 0x81a2a84c8224b14b
+(3)     [eap] = handled
+(3)   } # authenticate = handled
+(3) Using Post-Auth-Type Challenge
+(3) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(3)   Challenge { ... } # empty sub-section is ignored
+(3) Sent Access-Challenge Id 51 from 192.168.5.174:1812 to 192.168.5.1:47265 length 0
+(3)   EAP-Message = 0x018600b01900f9811028d7c972da0c8be4c7b2d8c7b827d2b571e7c20ca6beb413116aa07e3f9f3c50ffec4a964ac5c879ead2b1cb6d7c03a76afb3147b014ccce0f55383f111c557620f051aace7ea8a3083f561d56b12d2227afc40d7000c6e1f14b183ba37e4ca622c55f214611f3f92d7bd0de961984a1eb9f301f604e3a7e30f557726263ba3bd332bfddddff4b1275b9d97c4779550818dc4c4f83eec271ef8be121648716030300040e000000
+(3)   Message-Authenticator = 0x00000000000000000000000000000000
+(3)   State = 0x81a2a84c8224b14bb96d551ea535a6f4
+(3) Finished request
+Waking up in 4.9 seconds.
+(4) Received Access-Request Id 52 from 192.168.5.1:47265 to 192.168.5.174:1812 length 329
+(4)   User-Name = "bob"
+(4)   Called-Station-Id = "56-D3-77-67-89-BF:OpenWrt"
+(4)   NAS-Port-Type = Wireless-802.11
+(4)   Service-Type = Framed-User
+(4)   NAS-Port = 1
+(4)   Calling-Station-Id = "C2-15-DA-68-A8-5D"
+(4)   Connect-Info = "CONNECT 54Mbps 802.11g"
+(4)   Acct-Session-Id = "C9A4591CB8FA224D"
+(4)   WLAN-Pairwise-Cipher = 1027076
+(4)   WLAN-Group-Cipher = 1027076
+(4)   WLAN-AKM-Suite = 1027073
+(4)   Framed-MTU = 1400
+(4)   EAP-Message = 0x0286008819800000007e1603030046100000424104f69802ffa96d0b8a1e9ace7a40860bcb9a813bd7eadb947d829c123de8b60fe77058601e1c73d5fa4a9370d5f536e6c40d0a075c9e79108f62b1933390eae44b1403030001011603030028000000000000000087e4bf5010dd8b596efe27b4f4f56151cbd8a79ea243b1fe54fb0d195997bd98
+(4)   State = 0x81a2a84c8224b14bb96d551ea535a6f4
+(4)   Message-Authenticator = 0xa98613eb0600949362c288b154350624
+(4) session-state: No cached attributes
+(4) # Executing section authorize from file /etc/freeradius/3.0/sites-enabled/default
+(4)   authorize {
+(4)     policy filter_username {
+(4)       if (&User-Name) {
+(4)       if (&User-Name)  -> TRUE
+(4)       if (&User-Name)  {
+(4)         if (&User-Name =~ / /) {
+(4)         if (&User-Name =~ / /)  -> FALSE
+(4)         if (&User-Name =~ /@[^@]*@/ ) {
+(4)         if (&User-Name =~ /@[^@]*@/ )  -> FALSE
+(4)         if (&User-Name =~ /\.\./ ) {
+(4)         if (&User-Name =~ /\.\./ )  -> FALSE
+(4)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))  {
+(4)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))   -> FALSE
+(4)         if (&User-Name =~ /\.$/)  {
+(4)         if (&User-Name =~ /\.$/)   -> FALSE
+(4)         if (&User-Name =~ /@\./)  {
+(4)         if (&User-Name =~ /@\./)   -> FALSE
+(4)       } # if (&User-Name)  = notfound
+(4)     } # policy filter_username = notfound
+(4)     [preprocess] = ok
+(4)     [chap] = noop
+(4)     [mschap] = noop
+(4)     [digest] = noop
+(4) suffix: Checking for suffix after "@"
+(4) suffix: No '@' in User-Name = "bob", looking up realm NULL
+(4) suffix: No such realm "NULL"
+(4)     [suffix] = noop
+(4) eap: Peer sent EAP Response (code 2) ID 134 length 136
+(4) eap: Continuing tunnel setup
+(4)     [eap] = ok
+(4)   } # authorize = ok
+(4) Found Auth-Type = eap
+(4) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(4)   authenticate {
+(4) eap: Expiring EAP session with state 0x81a2a84c8224b14b
+(4) eap: Finished EAP session with state 0x81a2a84c8224b14b
+(4) eap: Previous EAP request found for state 0x81a2a84c8224b14b, released from the list
+(4) eap: Peer sent packet with method EAP PEAP (25)
+(4) eap: Calling submodule eap_peap to process data
+(4) eap_peap: Continuing EAP-TLS
+(4) eap_peap: Peer indicated complete TLS record size will be 126 bytes
+(4) eap_peap: Got complete TLS record (126 bytes)
+(4) eap_peap: [eaptls verify] = length included
+(4) eap_peap: TLS_accept: SSLv3/TLS write server done
+(4) eap_peap: <<< recv TLS 1.2  [length 0046]
+(4) eap_peap: TLS_accept: SSLv3/TLS read client key exchange
+(4) eap_peap: TLS_accept: SSLv3/TLS read change cipher spec
+(4) eap_peap: <<< recv TLS 1.2  [length 0010]
+(4) eap_peap: TLS_accept: SSLv3/TLS read finished
+(4) eap_peap: >>> send TLS 1.2  [length 0001]
+(4) eap_peap: TLS_accept: SSLv3/TLS write change cipher spec
+(4) eap_peap: >>> send TLS 1.2  [length 0010]
+(4) eap_peap: TLS_accept: SSLv3/TLS write finished
+(4) eap_peap: (other): SSL negotiation finished successfully
+(4) eap_peap: TLS - Connection Established
+(4) eap_peap: TLS-Session-Cipher-Suite = "ECDHE-RSA-AES128-GCM-SHA256"
+(4) eap_peap: TLS-Session-Version = "TLS 1.2"
+(4) eap_peap: TLS - got 51 bytes of data
+(4) eap_peap: [eaptls process] = handled
+(4) eap: Sending EAP Request (code 1) ID 135 length 57
+(4) eap: EAP session adding &reply:State = 0x81a2a84c8525b14b
+(4)     [eap] = handled
+(4)   } # authenticate = handled
+(4) Using Post-Auth-Type Challenge
+(4) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(4)   Challenge { ... } # empty sub-section is ignored
+(4) session-state: Saving cached attributes
+(4)   TLS-Session-Cipher-Suite = "ECDHE-RSA-AES128-GCM-SHA256"
+(4)   TLS-Session-Version = "TLS 1.2"
+(4) Sent Access-Challenge Id 52 from 192.168.5.174:1812 to 192.168.5.1:47265 length 0
+(4)   EAP-Message = 0x01870039190014030300010116030300289329aafbe9803467fa3a4ee72020fa0641f06df2c007165d2dbad711a60bed11eab57df6cf308d6b
+(4)   Message-Authenticator = 0x00000000000000000000000000000000
+(4)   State = 0x81a2a84c8525b14bb96d551ea535a6f4
+(4) Finished request
+Waking up in 4.8 seconds.
+(5) Received Access-Request Id 53 from 192.168.5.1:47265 to 192.168.5.174:1812 length 199
+(5)   User-Name = "bob"
+(5)   Called-Station-Id = "56-D3-77-67-89-BF:OpenWrt"
+(5)   NAS-Port-Type = Wireless-802.11
+(5)   Service-Type = Framed-User
+(5)   NAS-Port = 1
+(5)   Calling-Station-Id = "C2-15-DA-68-A8-5D"
+(5)   Connect-Info = "CONNECT 54Mbps 802.11g"
+(5)   Acct-Session-Id = "C9A4591CB8FA224D"
+(5)   WLAN-Pairwise-Cipher = 1027076
+(5)   WLAN-Group-Cipher = 1027076
+(5)   WLAN-AKM-Suite = 1027073
+(5)   Framed-MTU = 1400
+(5)   EAP-Message = 0x028700061900
+(5)   State = 0x81a2a84c8525b14bb96d551ea535a6f4
+(5)   Message-Authenticator = 0x17e43a8b0d6d3e89c37b6337fffbc9b4
+(5) Restoring &session-state
+(5)   &session-state:TLS-Session-Cipher-Suite = "ECDHE-RSA-AES128-GCM-SHA256"
+(5)   &session-state:TLS-Session-Version = "TLS 1.2"
+(5) # Executing section authorize from file /etc/freeradius/3.0/sites-enabled/default
+(5)   authorize {
+(5)     policy filter_username {
+(5)       if (&User-Name) {
+(5)       if (&User-Name)  -> TRUE
+(5)       if (&User-Name)  {
+(5)         if (&User-Name =~ / /) {
+(5)         if (&User-Name =~ / /)  -> FALSE
+(5)         if (&User-Name =~ /@[^@]*@/ ) {
+(5)         if (&User-Name =~ /@[^@]*@/ )  -> FALSE
+(5)         if (&User-Name =~ /\.\./ ) {
+(5)         if (&User-Name =~ /\.\./ )  -> FALSE
+(5)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))  {
+(5)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))   -> FALSE
+(5)         if (&User-Name =~ /\.$/)  {
+(5)         if (&User-Name =~ /\.$/)   -> FALSE
+(5)         if (&User-Name =~ /@\./)  {
+(5)         if (&User-Name =~ /@\./)   -> FALSE
+(5)       } # if (&User-Name)  = notfound
+(5)     } # policy filter_username = notfound
+(5)     [preprocess] = ok
+(5)     [chap] = noop
+(5)     [mschap] = noop
+(5)     [digest] = noop
+(5) suffix: Checking for suffix after "@"
+(5) suffix: No '@' in User-Name = "bob", looking up realm NULL
+(5) suffix: No such realm "NULL"
+(5)     [suffix] = noop
+(5) eap: Peer sent EAP Response (code 2) ID 135 length 6
+(5) eap: Continuing tunnel setup
+(5)     [eap] = ok
+(5)   } # authorize = ok
+(5) Found Auth-Type = eap
+(5) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(5)   authenticate {
+(5) eap: Expiring EAP session with state 0x81a2a84c8525b14b
+(5) eap: Finished EAP session with state 0x81a2a84c8525b14b
+(5) eap: Previous EAP request found for state 0x81a2a84c8525b14b, released from the list
+(5) eap: Peer sent packet with method EAP PEAP (25)
+(5) eap: Calling submodule eap_peap to process data
+(5) eap_peap: Continuing EAP-TLS
+(5) eap_peap: Peer ACKed our handshake fragment.  handshake is finished
+(5) eap_peap: [eaptls verify] = success
+(5) eap_peap: [eaptls process] = success
+(5) eap_peap: Session established.  Decoding tunneled attributes
+(5) eap_peap: PEAP state TUNNEL ESTABLISHED
+(5) eap: Sending EAP Request (code 1) ID 136 length 40
+(5) eap: EAP session adding &reply:State = 0x81a2a84c842ab14b
+(5)     [eap] = handled
+(5)   } # authenticate = handled
+(5) Using Post-Auth-Type Challenge
+(5) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(5)   Challenge { ... } # empty sub-section is ignored
+(5) session-state: Saving cached attributes
+(5)   TLS-Session-Cipher-Suite = "ECDHE-RSA-AES128-GCM-SHA256"
+(5)   TLS-Session-Version = "TLS 1.2"
+(5) Sent Access-Challenge Id 53 from 192.168.5.174:1812 to 192.168.5.1:47265 length 0
+(5)   EAP-Message = 0x018800281900170303001d9329aafbe98034688f532c59c53be15f3d463915a2db42f736f16fd15d
+(5)   Message-Authenticator = 0x00000000000000000000000000000000
+(5)   State = 0x81a2a84c842ab14bb96d551ea535a6f4
+(5) Finished request
+Waking up in 4.8 seconds.
+(6) Received Access-Request Id 54 from 192.168.5.1:47265 to 192.168.5.174:1812 length 232
+(6)   User-Name = "bob"
+(6)   Called-Station-Id = "56-D3-77-67-89-BF:OpenWrt"
+(6)   NAS-Port-Type = Wireless-802.11
+(6)   Service-Type = Framed-User
+(6)   NAS-Port = 1
+(6)   Calling-Station-Id = "C2-15-DA-68-A8-5D"
+(6)   Connect-Info = "CONNECT 54Mbps 802.11g"
+(6)   Acct-Session-Id = "C9A4591CB8FA224D"
+(6)   WLAN-Pairwise-Cipher = 1027076
+(6)   WLAN-Group-Cipher = 1027076
+(6)   WLAN-AKM-Suite = 1027073
+(6)   Framed-MTU = 1400
+(6)   EAP-Message = 0x028800271900170303001c00000000000000013ffca7ac4b5d4b7ef1efc3d13257387b7e081303
+(6)   State = 0x81a2a84c842ab14bb96d551ea535a6f4
+(6)   Message-Authenticator = 0x9b1a99fe6aee97d195e7ae206f890ad6
+(6) Restoring &session-state
+(6)   &session-state:TLS-Session-Cipher-Suite = "ECDHE-RSA-AES128-GCM-SHA256"
+(6)   &session-state:TLS-Session-Version = "TLS 1.2"
+(6) # Executing section authorize from file /etc/freeradius/3.0/sites-enabled/default
+(6)   authorize {
+(6)     policy filter_username {
+(6)       if (&User-Name) {
+(6)       if (&User-Name)  -> TRUE
+(6)       if (&User-Name)  {
+(6)         if (&User-Name =~ / /) {
+(6)         if (&User-Name =~ / /)  -> FALSE
+(6)         if (&User-Name =~ /@[^@]*@/ ) {
+(6)         if (&User-Name =~ /@[^@]*@/ )  -> FALSE
+(6)         if (&User-Name =~ /\.\./ ) {
+(6)         if (&User-Name =~ /\.\./ )  -> FALSE
+(6)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))  {
+(6)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))   -> FALSE
+(6)         if (&User-Name =~ /\.$/)  {
+(6)         if (&User-Name =~ /\.$/)   -> FALSE
+(6)         if (&User-Name =~ /@\./)  {
+(6)         if (&User-Name =~ /@\./)   -> FALSE
+(6)       } # if (&User-Name)  = notfound
+(6)     } # policy filter_username = notfound
+(6)     [preprocess] = ok
+(6)     [chap] = noop
+(6)     [mschap] = noop
+(6)     [digest] = noop
+(6) suffix: Checking for suffix after "@"
+(6) suffix: No '@' in User-Name = "bob", looking up realm NULL
+(6) suffix: No such realm "NULL"
+(6)     [suffix] = noop
+(6) eap: Peer sent EAP Response (code 2) ID 136 length 39
+(6) eap: Continuing tunnel setup
+(6)     [eap] = ok
+(6)   } # authorize = ok
+(6) Found Auth-Type = eap
+(6) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(6)   authenticate {
+(6) eap: Expiring EAP session with state 0x81a2a84c842ab14b
+(6) eap: Finished EAP session with state 0x81a2a84c842ab14b
+(6) eap: Previous EAP request found for state 0x81a2a84c842ab14b, released from the list
+(6) eap: Peer sent packet with method EAP PEAP (25)
+(6) eap: Calling submodule eap_peap to process data
+(6) eap_peap: Continuing EAP-TLS
+(6) eap_peap: [eaptls verify] = ok
+(6) eap_peap: Done initial handshake
+(6) eap_peap: [eaptls process] = ok
+(6) eap_peap: Session established.  Decoding tunneled attributes
+(6) eap_peap: PEAP state WAITING FOR INNER IDENTITY
+(6) eap_peap: Identity - bob
+(6) eap_peap: Got inner identity 'bob'
+(6) eap_peap: Setting default EAP type for tunneled EAP session
+(6) eap_peap: Got tunneled request
+(6) eap_peap:   EAP-Message = 0x0288000801626f62
+(6) eap_peap: Setting User-Name to bob
+(6) eap_peap: Sending tunneled request to inner-tunnel
+(6) eap_peap:   EAP-Message = 0x0288000801626f62
+(6) eap_peap:   FreeRADIUS-Proxied-To = 127.0.0.1
+(6) eap_peap:   User-Name = "bob"
+(6) Virtual server inner-tunnel received request
+(6)   EAP-Message = 0x0288000801626f62
+(6)   FreeRADIUS-Proxied-To = 127.0.0.1
+(6)   User-Name = "bob"
+(6) WARNING: Outer and inner identities are the same.  User privacy is compromised.
+(6) server inner-tunnel {
+(6)   # Executing section authorize from file /etc/freeradius/3.0/sites-enabled/inner-tunnel
+(6)     authorize {
+(6)       policy filter_username {
+(6)         if (&User-Name) {
+(6)         if (&User-Name)  -> TRUE
+(6)         if (&User-Name)  {
+(6)           if (&User-Name =~ / /) {
+(6)           if (&User-Name =~ / /)  -> FALSE
+(6)           if (&User-Name =~ /@[^@]*@/ ) {
+(6)           if (&User-Name =~ /@[^@]*@/ )  -> FALSE
+(6)           if (&User-Name =~ /\.\./ ) {
+(6)           if (&User-Name =~ /\.\./ )  -> FALSE
+(6)           if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))  {
+(6)           if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))   -> FALSE
+(6)           if (&User-Name =~ /\.$/)  {
+(6)           if (&User-Name =~ /\.$/)   -> FALSE
+(6)           if (&User-Name =~ /@\./)  {
+(6)           if (&User-Name =~ /@\./)   -> FALSE
+(6)         } # if (&User-Name)  = notfound
+(6)       } # policy filter_username = notfound
+(6)       [chap] = noop
+(6)       [mschap] = noop
+(6) suffix: Checking for suffix after "@"
+(6) suffix: No '@' in User-Name = "bob", looking up realm NULL
+(6) suffix: No such realm "NULL"
+(6)       [suffix] = noop
+(6)       update control {
+(6)         &Proxy-To-Realm := LOCAL
+(6)       } # update control = noop
+(6) eap: Peer sent EAP Response (code 2) ID 136 length 8
+(6) eap: EAP-Identity reply, returning 'ok' so we can short-circuit the rest of authorize
+(6)       [eap] = ok
+(6)     } # authorize = ok
+(6)   Found Auth-Type = eap
+(6)   # Executing group from file /etc/freeradius/3.0/sites-enabled/inner-tunnel
+(6)     authenticate {
+(6) eap: Peer sent packet with method EAP Identity (1)
+(6) eap: Calling submodule eap_mschapv2 to process data
+(6) eap_mschapv2: Issuing Challenge
+(6) eap: Sending EAP Request (code 1) ID 137 length 43
+(6) eap: EAP session adding &reply:State = 0x26e1d65b2668cc5a
+(6)       [eap] = handled
+(6)     } # authenticate = handled
+(6) } # server inner-tunnel
+(6) Virtual server sending reply
+(6)   EAP-Message = 0x0189002b1a0189002610329872e1fa1dad0fb4a90205942426ed667265657261646975732d332e302e3230
+(6)   Message-Authenticator = 0x00000000000000000000000000000000
+(6)   State = 0x26e1d65b2668cc5aad1aa801cafde476
+(6) eap_peap: Got tunneled reply code 11
+(6) eap_peap:   EAP-Message = 0x0189002b1a0189002610329872e1fa1dad0fb4a90205942426ed667265657261646975732d332e302e3230
+(6) eap_peap:   Message-Authenticator = 0x00000000000000000000000000000000
+(6) eap_peap:   State = 0x26e1d65b2668cc5aad1aa801cafde476
+(6) eap_peap: Got tunneled reply RADIUS code 11
+(6) eap_peap:   EAP-Message = 0x0189002b1a0189002610329872e1fa1dad0fb4a90205942426ed667265657261646975732d332e302e3230
+(6) eap_peap:   Message-Authenticator = 0x00000000000000000000000000000000
+(6) eap_peap:   State = 0x26e1d65b2668cc5aad1aa801cafde476
+(6) eap_peap: Got tunneled Access-Challenge
+(6) eap: Sending EAP Request (code 1) ID 137 length 74
+(6) eap: EAP session adding &reply:State = 0x81a2a84c872bb14b
+(6)     [eap] = handled
+(6)   } # authenticate = handled
+(6) Using Post-Auth-Type Challenge
+(6) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(6)   Challenge { ... } # empty sub-section is ignored
+(6) session-state: Saving cached attributes
+(6)   TLS-Session-Cipher-Suite = "ECDHE-RSA-AES128-GCM-SHA256"
+(6)   TLS-Session-Version = "TLS 1.2"
+(6) Sent Access-Challenge Id 54 from 192.168.5.174:1812 to 192.168.5.1:47265 length 0
+(6)   EAP-Message = 0x0189004a1900170303003f9329aafbe9803469ec74bb08d0f3dabe0974c70a30290d7c78b42122983a36f0529308a18a85800f30ff4c7a731be152ef5e7561ff0fe5f317200526030f91
+(6)   Message-Authenticator = 0x00000000000000000000000000000000
+(6)   State = 0x81a2a84c872bb14bb96d551ea535a6f4
+(6) Finished request
+Waking up in 4.8 seconds.
+(7) Received Access-Request Id 55 from 192.168.5.1:47265 to 192.168.5.174:1812 length 286
+(7)   User-Name = "bob"
+(7)   Called-Station-Id = "56-D3-77-67-89-BF:OpenWrt"
+(7)   NAS-Port-Type = Wireless-802.11
+(7)   Service-Type = Framed-User
+(7)   NAS-Port = 1
+(7)   Calling-Station-Id = "C2-15-DA-68-A8-5D"
+(7)   Connect-Info = "CONNECT 54Mbps 802.11g"
+(7)   Acct-Session-Id = "C9A4591CB8FA224D"
+(7)   WLAN-Pairwise-Cipher = 1027076
+(7)   WLAN-Group-Cipher = 1027076
+(7)   WLAN-AKM-Suite = 1027073
+(7)   Framed-MTU = 1400
+(7)   EAP-Message = 0x0289005d1900170303005200000000000000023016cc78a2ea879311fd18b061e9ea354ddb72e257aef10eb569bdf5c3250c9d17e8a7f97e2067746836bfb0bbdebaaf8f7183150c7d101859569844c6274dc4711633717151fbdf75ac
+(7)   State = 0x81a2a84c872bb14bb96d551ea535a6f4
+(7)   Message-Authenticator = 0x698d6b59d6bade9320985b1d9c897090
+(7) Restoring &session-state
+(7)   &session-state:TLS-Session-Cipher-Suite = "ECDHE-RSA-AES128-GCM-SHA256"
+(7)   &session-state:TLS-Session-Version = "TLS 1.2"
+(7) # Executing section authorize from file /etc/freeradius/3.0/sites-enabled/default
+(7)   authorize {
+(7)     policy filter_username {
+(7)       if (&User-Name) {
+(7)       if (&User-Name)  -> TRUE
+(7)       if (&User-Name)  {
+(7)         if (&User-Name =~ / /) {
+(7)         if (&User-Name =~ / /)  -> FALSE
+(7)         if (&User-Name =~ /@[^@]*@/ ) {
+(7)         if (&User-Name =~ /@[^@]*@/ )  -> FALSE
+(7)         if (&User-Name =~ /\.\./ ) {
+(7)         if (&User-Name =~ /\.\./ )  -> FALSE
+(7)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))  {
+(7)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))   -> FALSE
+(7)         if (&User-Name =~ /\.$/)  {
+(7)         if (&User-Name =~ /\.$/)   -> FALSE
+(7)         if (&User-Name =~ /@\./)  {
+(7)         if (&User-Name =~ /@\./)   -> FALSE
+(7)       } # if (&User-Name)  = notfound
+(7)     } # policy filter_username = notfound
+(7)     [preprocess] = ok
+(7)     [chap] = noop
+(7)     [mschap] = noop
+(7)     [digest] = noop
+(7) suffix: Checking for suffix after "@"
+(7) suffix: No '@' in User-Name = "bob", looking up realm NULL
+(7) suffix: No such realm "NULL"
+(7)     [suffix] = noop
+(7) eap: Peer sent EAP Response (code 2) ID 137 length 93
+(7) eap: Continuing tunnel setup
+(7)     [eap] = ok
+(7)   } # authorize = ok
+(7) Found Auth-Type = eap
+(7) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(7)   authenticate {
+(7) eap: Expiring EAP session with state 0x26e1d65b2668cc5a
+(7) eap: Finished EAP session with state 0x81a2a84c872bb14b
+(7) eap: Previous EAP request found for state 0x81a2a84c872bb14b, released from the list
+(7) eap: Peer sent packet with method EAP PEAP (25)
+(7) eap: Calling submodule eap_peap to process data
+(7) eap_peap: Continuing EAP-TLS
+(7) eap_peap: [eaptls verify] = ok
+(7) eap_peap: Done initial handshake
+(7) eap_peap: [eaptls process] = ok
+(7) eap_peap: Session established.  Decoding tunneled attributes
+(7) eap_peap: PEAP state phase2
+(7) eap_peap: EAP method MSCHAPv2 (26)
+(7) eap_peap: Got tunneled request
+(7) eap_peap:   EAP-Message = 0x0289003e1a0289003931fff17252c2f0c992f461fdf64e4350ff0000000000000000aae693dbba1a4ddb6dafaed1d3ad8785bb0401a82fe8af9900626f62
+(7) eap_peap: Setting User-Name to bob
+(7) eap_peap: Sending tunneled request to inner-tunnel
+(7) eap_peap:   EAP-Message = 0x0289003e1a0289003931fff17252c2f0c992f461fdf64e4350ff0000000000000000aae693dbba1a4ddb6dafaed1d3ad8785bb0401a82fe8af9900626f62
+(7) eap_peap:   FreeRADIUS-Proxied-To = 127.0.0.1
+(7) eap_peap:   User-Name = "bob"
+(7) eap_peap:   State = 0x26e1d65b2668cc5aad1aa801cafde476
+(7) Virtual server inner-tunnel received request
+(7)   EAP-Message = 0x0289003e1a0289003931fff17252c2f0c992f461fdf64e4350ff0000000000000000aae693dbba1a4ddb6dafaed1d3ad8785bb0401a82fe8af9900626f62
+(7)   FreeRADIUS-Proxied-To = 127.0.0.1
+(7)   User-Name = "bob"
+(7)   State = 0x26e1d65b2668cc5aad1aa801cafde476
+(7) WARNING: Outer and inner identities are the same.  User privacy is compromised.
+(7) server inner-tunnel {
+(7)   session-state: No cached attributes
+(7)   # Executing section authorize from file /etc/freeradius/3.0/sites-enabled/inner-tunnel
+(7)     authorize {
+(7)       policy filter_username {
+(7)         if (&User-Name) {
+(7)         if (&User-Name)  -> TRUE
+(7)         if (&User-Name)  {
+(7)           if (&User-Name =~ / /) {
+(7)           if (&User-Name =~ / /)  -> FALSE
+(7)           if (&User-Name =~ /@[^@]*@/ ) {
+(7)           if (&User-Name =~ /@[^@]*@/ )  -> FALSE
+(7)           if (&User-Name =~ /\.\./ ) {
+(7)           if (&User-Name =~ /\.\./ )  -> FALSE
+(7)           if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))  {
+(7)           if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))   -> FALSE
+(7)           if (&User-Name =~ /\.$/)  {
+(7)           if (&User-Name =~ /\.$/)   -> FALSE
+(7)           if (&User-Name =~ /@\./)  {
+(7)           if (&User-Name =~ /@\./)   -> FALSE
+(7)         } # if (&User-Name)  = notfound
+(7)       } # policy filter_username = notfound
+(7)       [chap] = noop
+(7)       [mschap] = noop
+(7) suffix: Checking for suffix after "@"
+(7) suffix: No '@' in User-Name = "bob", looking up realm NULL
+(7) suffix: No such realm "NULL"
+(7)       [suffix] = noop
+(7)       update control {
+(7)         &Proxy-To-Realm := LOCAL
+(7)       } # update control = noop
+(7) eap: Peer sent EAP Response (code 2) ID 137 length 62
+(7) eap: No EAP Start, assuming it's an on-going EAP conversation
+(7)       [eap] = updated
+(7)       [files] = noop
+(7) sql: EXPAND %{User-Name}
+(7) sql:    --> bob
+(7) sql: SQL-User-Name set to 'bob'
+rlm_sql (sql): Reserved connection (6)
+(7) sql: EXPAND SELECT id, username, attribute, value, op FROM radcheck WHERE username = '%{SQL-User-Name}' ORDER BY id
+(7) sql:    --> SELECT id, username, attribute, value, op FROM radcheck WHERE username = 'bob' ORDER BY id
+(7) sql: Executing select query: SELECT id, username, attribute, value, op FROM radcheck WHERE username = 'bob' ORDER BY id
+(7) sql: User found in radcheck table
+(7) sql: Conditional check items matched, merging assignment check items
+(7) sql:   Cleartext-Password := "hello"
+(7) sql: EXPAND SELECT id, username, attribute, value, op FROM radreply WHERE username = '%{SQL-User-Name}' ORDER BY id
+(7) sql:    --> SELECT id, username, attribute, value, op FROM radreply WHERE username = 'bob' ORDER BY id
+(7) sql: Executing select query: SELECT id, username, attribute, value, op FROM radreply WHERE username = 'bob' ORDER BY id
+rlm_sql (sql): Reserved connection (7)
+rlm_sql (sql): Released connection (7)
+(7) sql: EXPAND SELECT groupname FROM radusergroup WHERE username = '%{SQL-User-Name}' ORDER BY priority
+(7) sql:    --> SELECT groupname FROM radusergroup WHERE username = 'bob' ORDER BY priority
+(7) sql: Executing select query: SELECT groupname FROM radusergroup WHERE username = 'bob' ORDER BY priority
+(7) sql: User not found in any groups
+rlm_sql (sql): Released connection (6)
+(7)       [sql] = ok
+(7)       [expiration] = noop
+(7)       [logintime] = noop
+(7) pap: WARNING: Auth-Type already set.  Not setting to PAP
+(7)       [pap] = noop
+(7)     } # authorize = updated
+(7)   Found Auth-Type = eap
+(7)   # Executing group from file /etc/freeradius/3.0/sites-enabled/inner-tunnel
+(7)     authenticate {
+(7) eap: Expiring EAP session with state 0x26e1d65b2668cc5a
+(7) eap: Finished EAP session with state 0x26e1d65b2668cc5a
+(7) eap: Previous EAP request found for state 0x26e1d65b2668cc5a, released from the list
+(7) eap: Peer sent packet with method EAP MSCHAPv2 (26)
+(7) eap: Calling submodule eap_mschapv2 to process data
+(7) eap_mschapv2: # Executing group from file /etc/freeradius/3.0/sites-enabled/inner-tunnel
+(7) eap_mschapv2:   authenticate {
+(7) mschap: Found Cleartext-Password, hashing to create NT-Password
+(7) mschap: Creating challenge hash with username: bob
+(7) mschap: Client is using MS-CHAPv2
+(7) mschap: Adding MS-CHAPv2 MPPE keys
+(7) eap_mschapv2:     [mschap] = ok
+(7) eap_mschapv2:   } # authenticate = ok
+(7) eap_mschapv2: MSCHAP Success
+(7) eap: Sending EAP Request (code 1) ID 138 length 51
+(7) eap: EAP session adding &reply:State = 0x26e1d65b276bcc5a
+(7)       [eap] = handled
+(7)     } # authenticate = handled
+(7) } # server inner-tunnel
+(7) Virtual server sending reply
+(7)   EAP-Message = 0x018a00331a0389002e533d42384644313431434332394446393343313439383231453030424639304537433735304531383839
+(7)   Message-Authenticator = 0x00000000000000000000000000000000
+(7)   State = 0x26e1d65b276bcc5aad1aa801cafde476
+(7) eap_peap: Got tunneled reply code 11
+(7) eap_peap:   EAP-Message = 0x018a00331a0389002e533d42384644313431434332394446393343313439383231453030424639304537433735304531383839
+(7) eap_peap:   Message-Authenticator = 0x00000000000000000000000000000000
+(7) eap_peap:   State = 0x26e1d65b276bcc5aad1aa801cafde476
+(7) eap_peap: Got tunneled reply RADIUS code 11
+(7) eap_peap:   EAP-Message = 0x018a00331a0389002e533d42384644313431434332394446393343313439383231453030424639304537433735304531383839
+(7) eap_peap:   Message-Authenticator = 0x00000000000000000000000000000000
+(7) eap_peap:   State = 0x26e1d65b276bcc5aad1aa801cafde476
+(7) eap_peap: Got tunneled Access-Challenge
+(7) eap: Sending EAP Request (code 1) ID 138 length 82
+(7) eap: EAP session adding &reply:State = 0x81a2a84c8628b14b
+(7)     [eap] = handled
+(7)   } # authenticate = handled
+(7) Using Post-Auth-Type Challenge
+(7) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(7)   Challenge { ... } # empty sub-section is ignored
+(7) session-state: Saving cached attributes
+(7)   TLS-Session-Cipher-Suite = "ECDHE-RSA-AES128-GCM-SHA256"
+(7)   TLS-Session-Version = "TLS 1.2"
+(7) Sent Access-Challenge Id 55 from 192.168.5.174:1812 to 192.168.5.1:47265 length 0
+(7)   EAP-Message = 0x018a0052190017030300479329aafbe980346a5e343aa6c43cf2b145dc498eec64f593e1fe620392ab32538b0633e741fc7f942673958fd074ef264741e44bc2f37a2e15be8adab538212e707d1609e36678
+(7)   Message-Authenticator = 0x00000000000000000000000000000000
+(7)   State = 0x81a2a84c8628b14bb96d551ea535a6f4
+(7) Finished request
+Waking up in 4.8 seconds.
+(8) Received Access-Request Id 56 from 192.168.5.1:47265 to 192.168.5.174:1812 length 230
+(8)   User-Name = "bob"
+(8)   Called-Station-Id = "56-D3-77-67-89-BF:OpenWrt"
+(8)   NAS-Port-Type = Wireless-802.11
+(8)   Service-Type = Framed-User
+(8)   NAS-Port = 1
+(8)   Calling-Station-Id = "C2-15-DA-68-A8-5D"
+(8)   Connect-Info = "CONNECT 54Mbps 802.11g"
+(8)   Acct-Session-Id = "C9A4591CB8FA224D"
+(8)   WLAN-Pairwise-Cipher = 1027076
+(8)   WLAN-Group-Cipher = 1027076
+(8)   WLAN-AKM-Suite = 1027073
+(8)   Framed-MTU = 1400
+(8)   EAP-Message = 0x028a00251900170303001a00000000000000034dfb4c1cb70ea2af6de64b18b8243bf90c6e
+(8)   State = 0x81a2a84c8628b14bb96d551ea535a6f4
+(8)   Message-Authenticator = 0x0c8a6f4f2fdd11f18a27bc8d19003620
+(8) Restoring &session-state
+(8)   &session-state:TLS-Session-Cipher-Suite = "ECDHE-RSA-AES128-GCM-SHA256"
+(8)   &session-state:TLS-Session-Version = "TLS 1.2"
+(8) # Executing section authorize from file /etc/freeradius/3.0/sites-enabled/default
+(8)   authorize {
+(8)     policy filter_username {
+(8)       if (&User-Name) {
+(8)       if (&User-Name)  -> TRUE
+(8)       if (&User-Name)  {
+(8)         if (&User-Name =~ / /) {
+(8)         if (&User-Name =~ / /)  -> FALSE
+(8)         if (&User-Name =~ /@[^@]*@/ ) {
+(8)         if (&User-Name =~ /@[^@]*@/ )  -> FALSE
+(8)         if (&User-Name =~ /\.\./ ) {
+(8)         if (&User-Name =~ /\.\./ )  -> FALSE
+(8)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))  {
+(8)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))   -> FALSE
+(8)         if (&User-Name =~ /\.$/)  {
+(8)         if (&User-Name =~ /\.$/)   -> FALSE
+(8)         if (&User-Name =~ /@\./)  {
+(8)         if (&User-Name =~ /@\./)   -> FALSE
+(8)       } # if (&User-Name)  = notfound
+(8)     } # policy filter_username = notfound
+(8)     [preprocess] = ok
+(8)     [chap] = noop
+(8)     [mschap] = noop
+(8)     [digest] = noop
+(8) suffix: Checking for suffix after "@"
+(8) suffix: No '@' in User-Name = "bob", looking up realm NULL
+(8) suffix: No such realm "NULL"
+(8)     [suffix] = noop
+(8) eap: Peer sent EAP Response (code 2) ID 138 length 37
+(8) eap: Continuing tunnel setup
+(8)     [eap] = ok
+(8)   } # authorize = ok
+(8) Found Auth-Type = eap
+(8) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(8)   authenticate {
+(8) eap: Expiring EAP session with state 0x26e1d65b276bcc5a
+(8) eap: Finished EAP session with state 0x81a2a84c8628b14b
+(8) eap: Previous EAP request found for state 0x81a2a84c8628b14b, released from the list
+(8) eap: Peer sent packet with method EAP PEAP (25)
+(8) eap: Calling submodule eap_peap to process data
+(8) eap_peap: Continuing EAP-TLS
+(8) eap_peap: [eaptls verify] = ok
+(8) eap_peap: Done initial handshake
+(8) eap_peap: [eaptls process] = ok
+(8) eap_peap: Session established.  Decoding tunneled attributes
+(8) eap_peap: PEAP state phase2
+(8) eap_peap: EAP method MSCHAPv2 (26)
+(8) eap_peap: Got tunneled request
+(8) eap_peap:   EAP-Message = 0x028a00061a03
+(8) eap_peap: Setting User-Name to bob
+(8) eap_peap: Sending tunneled request to inner-tunnel
+(8) eap_peap:   EAP-Message = 0x028a00061a03
+(8) eap_peap:   FreeRADIUS-Proxied-To = 127.0.0.1
+(8) eap_peap:   User-Name = "bob"
+(8) eap_peap:   State = 0x26e1d65b276bcc5aad1aa801cafde476
+(8) Virtual server inner-tunnel received request
+(8)   EAP-Message = 0x028a00061a03
+(8)   FreeRADIUS-Proxied-To = 127.0.0.1
+(8)   User-Name = "bob"
+(8)   State = 0x26e1d65b276bcc5aad1aa801cafde476
+(8) WARNING: Outer and inner identities are the same.  User privacy is compromised.
+(8) server inner-tunnel {
+(8)   session-state: No cached attributes
+(8)   # Executing section authorize from file /etc/freeradius/3.0/sites-enabled/inner-tunnel
+(8)     authorize {
+(8)       policy filter_username {
+(8)         if (&User-Name) {
+(8)         if (&User-Name)  -> TRUE
+(8)         if (&User-Name)  {
+(8)           if (&User-Name =~ / /) {
+(8)           if (&User-Name =~ / /)  -> FALSE
+(8)           if (&User-Name =~ /@[^@]*@/ ) {
+(8)           if (&User-Name =~ /@[^@]*@/ )  -> FALSE
+(8)           if (&User-Name =~ /\.\./ ) {
+(8)           if (&User-Name =~ /\.\./ )  -> FALSE
+(8)           if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))  {
+(8)           if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))   -> FALSE
+(8)           if (&User-Name =~ /\.$/)  {
+(8)           if (&User-Name =~ /\.$/)   -> FALSE
+(8)           if (&User-Name =~ /@\./)  {
+(8)           if (&User-Name =~ /@\./)   -> FALSE
+(8)         } # if (&User-Name)  = notfound
+(8)       } # policy filter_username = notfound
+(8)       [chap] = noop
+(8)       [mschap] = noop
+(8) suffix: Checking for suffix after "@"
+(8) suffix: No '@' in User-Name = "bob", looking up realm NULL
+(8) suffix: No such realm "NULL"
+(8)       [suffix] = noop
+(8)       update control {
+(8)         &Proxy-To-Realm := LOCAL
+(8)       } # update control = noop
+(8) eap: Peer sent EAP Response (code 2) ID 138 length 6
+(8) eap: No EAP Start, assuming it's an on-going EAP conversation
+(8)       [eap] = updated
+(8)       [files] = noop
+(8) sql: EXPAND %{User-Name}
+(8) sql:    --> bob
+(8) sql: SQL-User-Name set to 'bob'
+rlm_sql (sql): Reserved connection (8)
+(8) sql: EXPAND SELECT id, username, attribute, value, op FROM radcheck WHERE username = '%{SQL-User-Name}' ORDER BY id
+(8) sql:    --> SELECT id, username, attribute, value, op FROM radcheck WHERE username = 'bob' ORDER BY id
+(8) sql: Executing select query: SELECT id, username, attribute, value, op FROM radcheck WHERE username = 'bob' ORDER BY id
+(8) sql: User found in radcheck table
+(8) sql: Conditional check items matched, merging assignment check items
+(8) sql:   Cleartext-Password := "hello"
+(8) sql: EXPAND SELECT id, username, attribute, value, op FROM radreply WHERE username = '%{SQL-User-Name}' ORDER BY id
+(8) sql:    --> SELECT id, username, attribute, value, op FROM radreply WHERE username = 'bob' ORDER BY id
+(8) sql: Executing select query: SELECT id, username, attribute, value, op FROM radreply WHERE username = 'bob' ORDER BY id
+rlm_sql (sql): Reserved connection (6)
+rlm_sql (sql): Released connection (6)
+(8) sql: EXPAND SELECT groupname FROM radusergroup WHERE username = '%{SQL-User-Name}' ORDER BY priority
+(8) sql:    --> SELECT groupname FROM radusergroup WHERE username = 'bob' ORDER BY priority
+(8) sql: Executing select query: SELECT groupname FROM radusergroup WHERE username = 'bob' ORDER BY priority
+(8) sql: User not found in any groups
+rlm_sql (sql): Released connection (8)
+(8)       [sql] = ok
+(8)       [expiration] = noop
+(8)       [logintime] = noop
+(8) pap: WARNING: Auth-Type already set.  Not setting to PAP
+(8)       [pap] = noop
+(8)     } # authorize = updated
+(8)   Found Auth-Type = eap
+(8)   # Executing group from file /etc/freeradius/3.0/sites-enabled/inner-tunnel
+(8)     authenticate {
+(8) eap: Expiring EAP session with state 0x26e1d65b276bcc5a
+(8) eap: Finished EAP session with state 0x26e1d65b276bcc5a
+(8) eap: Previous EAP request found for state 0x26e1d65b276bcc5a, released from the list
+(8) eap: Peer sent packet with method EAP MSCHAPv2 (26)
+(8) eap: Calling submodule eap_mschapv2 to process data
+(8) eap: Sending EAP Success (code 3) ID 138 length 4
+(8) eap: Freeing handler
+(8)       [eap] = ok
+(8)     } # authenticate = ok
+(8)   # Executing section post-auth from file /etc/freeradius/3.0/sites-enabled/inner-tunnel
+(8)     post-auth {
+(8) sql: EXPAND .query
+(8) sql:    --> .query
+(8) sql: Using query template 'query'
+rlm_sql (sql): Reserved connection (7)
+(8) sql: EXPAND %{User-Name}
+(8) sql:    --> bob
+(8) sql: SQL-User-Name set to 'bob'
+(8) sql: EXPAND INSERT INTO radpostauth (username, pass, reply, authdate) VALUES ( '%{SQL-User-Name}', '%{%{User-Password}:-%{Chap-Password}}', '%{reply:Packet-Type}', '%S')
+(8) sql:    --> INSERT INTO radpostauth (username, pass, reply, authdate) VALUES ( 'bob', '', 'Access-Accept', '2022-11-24 15:10:13')
+(8) sql: Executing query: INSERT INTO radpostauth (username, pass, reply, authdate) VALUES ( 'bob', '', 'Access-Accept', '2022-11-24 15:10:13')
+(8) sql: SQL query returned: success
+(8) sql: 1 record(s) updated
+rlm_sql (sql): Released connection (7)
+(8)       [sql] = ok
+(8)       if (0) {
+(8)       if (0)  -> FALSE
+(8)     } # post-auth = ok
+(8) } # server inner-tunnel
+(8) Virtual server sending reply
+(8)   MS-MPPE-Encryption-Policy = Encryption-Allowed
+(8)   MS-MPPE-Encryption-Types = RC4-40or128-bit-Allowed
+(8)   MS-MPPE-Send-Key = 0x1870cbe343f35a9c80c57c340a5ca487
+(8)   MS-MPPE-Recv-Key = 0x4df3761064022382b25fbe5ca5a15826
+(8)   EAP-Message = 0x038a0004
+(8)   Message-Authenticator = 0x00000000000000000000000000000000
+(8)   User-Name = "bob"
+(8) eap_peap: Got tunneled reply code 2
+(8) eap_peap:   MS-MPPE-Encryption-Policy = Encryption-Allowed
+(8) eap_peap:   MS-MPPE-Encryption-Types = RC4-40or128-bit-Allowed
+(8) eap_peap:   MS-MPPE-Send-Key = 0x1870cbe343f35a9c80c57c340a5ca487
+(8) eap_peap:   MS-MPPE-Recv-Key = 0x4df3761064022382b25fbe5ca5a15826
+(8) eap_peap:   EAP-Message = 0x038a0004
+(8) eap_peap:   Message-Authenticator = 0x00000000000000000000000000000000
+(8) eap_peap:   User-Name = "bob"
+(8) eap_peap: Got tunneled reply RADIUS code 2
+(8) eap_peap:   MS-MPPE-Encryption-Policy = Encryption-Allowed
+(8) eap_peap:   MS-MPPE-Encryption-Types = RC4-40or128-bit-Allowed
+(8) eap_peap:   MS-MPPE-Send-Key = 0x1870cbe343f35a9c80c57c340a5ca487
+(8) eap_peap:   MS-MPPE-Recv-Key = 0x4df3761064022382b25fbe5ca5a15826
+(8) eap_peap:   EAP-Message = 0x038a0004
+(8) eap_peap:   Message-Authenticator = 0x00000000000000000000000000000000
+(8) eap_peap:   User-Name = "bob"
+(8) eap_peap: Tunneled authentication was successful
+(8) eap_peap: SUCCESS
+(8) eap: Sending EAP Request (code 1) ID 139 length 46
+(8) eap: EAP session adding &reply:State = 0x81a2a84c8929b14b
+(8)     [eap] = handled
+(8)   } # authenticate = handled
+(8) Using Post-Auth-Type Challenge
+(8) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(8)   Challenge { ... } # empty sub-section is ignored
+(8) session-state: Saving cached attributes
+(8)   TLS-Session-Cipher-Suite = "ECDHE-RSA-AES128-GCM-SHA256"
+(8)   TLS-Session-Version = "TLS 1.2"
+(8) Sent Access-Challenge Id 56 from 192.168.5.174:1812 to 192.168.5.1:47265 length 0
+(8)   EAP-Message = 0x018b002e190017030300239329aafbe980346b72a481891a67fd6e94b2623d78208025995c8ce33c2a17b9532bc0
+(8)   Message-Authenticator = 0x00000000000000000000000000000000
+(8)   State = 0x81a2a84c8929b14bb96d551ea535a6f4
+(8) Finished request
+Waking up in 4.8 seconds.
+(9) Received Access-Request Id 57 from 192.168.5.1:47265 to 192.168.5.174:1812 length 239
+(9)   User-Name = "bob"
+(9)   Called-Station-Id = "56-D3-77-67-89-BF:OpenWrt"
+(9)   NAS-Port-Type = Wireless-802.11
+(9)   Service-Type = Framed-User
+(9)   NAS-Port = 1
+(9)   Calling-Station-Id = "C2-15-DA-68-A8-5D"
+(9)   Connect-Info = "CONNECT 54Mbps 802.11g"
+(9)   Acct-Session-Id = "C9A4591CB8FA224D"
+(9)   WLAN-Pairwise-Cipher = 1027076
+(9)   WLAN-Group-Cipher = 1027076
+(9)   WLAN-AKM-Suite = 1027073
+(9)   Framed-MTU = 1400
+(9)   EAP-Message = 0x028b002e190017030300230000000000000004a1544cd4a595b3cde74a9f0c74172a7282ecc1146626f419bdb5e8
+(9)   State = 0x81a2a84c8929b14bb96d551ea535a6f4
+(9)   Message-Authenticator = 0xfb78fe5fb15c5ad4578e7cb687b3a6b6
+(9) Restoring &session-state
+(9)   &session-state:TLS-Session-Cipher-Suite = "ECDHE-RSA-AES128-GCM-SHA256"
+(9)   &session-state:TLS-Session-Version = "TLS 1.2"
+(9) # Executing section authorize from file /etc/freeradius/3.0/sites-enabled/default
+(9)   authorize {
+(9)     policy filter_username {
+(9)       if (&User-Name) {
+(9)       if (&User-Name)  -> TRUE
+(9)       if (&User-Name)  {
+(9)         if (&User-Name =~ / /) {
+(9)         if (&User-Name =~ / /)  -> FALSE
+(9)         if (&User-Name =~ /@[^@]*@/ ) {
+(9)         if (&User-Name =~ /@[^@]*@/ )  -> FALSE
+(9)         if (&User-Name =~ /\.\./ ) {
+(9)         if (&User-Name =~ /\.\./ )  -> FALSE
+(9)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))  {
+(9)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))   -> FALSE
+(9)         if (&User-Name =~ /\.$/)  {
+(9)         if (&User-Name =~ /\.$/)   -> FALSE
+(9)         if (&User-Name =~ /@\./)  {
+(9)         if (&User-Name =~ /@\./)   -> FALSE
+(9)       } # if (&User-Name)  = notfound
+(9)     } # policy filter_username = notfound
+(9)     [preprocess] = ok
+(9)     [chap] = noop
+(9)     [mschap] = noop
+(9)     [digest] = noop
+(9) suffix: Checking for suffix after "@"
+(9) suffix: No '@' in User-Name = "bob", looking up realm NULL
+(9) suffix: No such realm "NULL"
+(9)     [suffix] = noop
+(9) eap: Peer sent EAP Response (code 2) ID 139 length 46
+(9) eap: Continuing tunnel setup
+(9)     [eap] = ok
+(9)   } # authorize = ok
+(9) Found Auth-Type = eap
+(9) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(9)   authenticate {
+(9) eap: Expiring EAP session with state 0x81a2a84c8929b14b
+(9) eap: Finished EAP session with state 0x81a2a84c8929b14b
+(9) eap: Previous EAP request found for state 0x81a2a84c8929b14b, released from the list
+(9) eap: Peer sent packet with method EAP PEAP (25)
+(9) eap: Calling submodule eap_peap to process data
+(9) eap_peap: Continuing EAP-TLS
+(9) eap_peap: [eaptls verify] = ok
+(9) eap_peap: Done initial handshake
+(9) eap_peap: [eaptls process] = ok
+(9) eap_peap: Session established.  Decoding tunneled attributes
+(9) eap_peap: PEAP state send tlv success
+(9) eap_peap: Received EAP-TLV response
+(9) eap_peap: Success
+(9) eap: Sending EAP Success (code 3) ID 139 length 4
+(9) eap: Freeing handler
+(9)     [eap] = ok
+(9)   } # authenticate = ok
+(9) # Executing section post-auth from file /etc/freeradius/3.0/sites-enabled/default
+(9)   post-auth {
+(9)     if (session-state:User-Name && reply:User-Name && request:User-Name && (reply:User-Name == request:User-Name)) {
+(9)     if (session-state:User-Name && reply:User-Name && request:User-Name && (reply:User-Name == request:User-Name))  -> FALSE
+(9)     update {
+(9)       &reply::TLS-Session-Cipher-Suite += &session-state:TLS-Session-Cipher-Suite[*] -> 'ECDHE-RSA-AES128-GCM-SHA256'
+(9)       &reply::TLS-Session-Version += &session-state:TLS-Session-Version[*] -> 'TLS 1.2'
+(9)     } # update = noop
+(9) sql: EXPAND .query
+(9) sql:    --> .query
+(9) sql: Using query template 'query'
+rlm_sql (sql): Reserved connection (8)
+(9) sql: EXPAND %{User-Name}
+(9) sql:    --> bob
+(9) sql: SQL-User-Name set to 'bob'
+(9) sql: EXPAND INSERT INTO radpostauth (username, pass, reply, authdate) VALUES ( '%{SQL-User-Name}', '%{%{User-Password}:-%{Chap-Password}}', '%{reply:Packet-Type}', '%S')
+(9) sql:    --> INSERT INTO radpostauth (username, pass, reply, authdate) VALUES ( 'bob', '', 'Access-Accept', '2022-11-24 15:10:13')
+(9) sql: Executing query: INSERT INTO radpostauth (username, pass, reply, authdate) VALUES ( 'bob', '', 'Access-Accept', '2022-11-24 15:10:13')
+(9) sql: SQL query returned: success
+(9) sql: 1 record(s) updated
+rlm_sql (sql): Released connection (8)
+(9)     [sql] = ok
+(9)     [exec] = noop
+(9)     policy remove_reply_message_if_eap {
+(9)       if (&reply:EAP-Message && &reply:Reply-Message) {
+(9)       if (&reply:EAP-Message && &reply:Reply-Message)  -> FALSE
+(9)       else {
+(9)         [noop] = noop
+(9)       } # else = noop
+(9)     } # policy remove_reply_message_if_eap = noop
+(9)   } # post-auth = ok
+(9) Sent Access-Accept Id 57 from 192.168.5.174:1812 to 192.168.5.1:47265 length 0
+(9)   MS-MPPE-Recv-Key = 0x43e3bd5850f5df4ea00bea01bd9910b9d083cdd59608cb7bf551e2288b318b8a
+(9)   MS-MPPE-Send-Key = 0x5ad598eca243c777066810e184c8b2d15f292691a8c8fe0ee79568fc388327cd
+(9)   EAP-Message = 0x038b0004
+(9)   Message-Authenticator = 0x00000000000000000000000000000000
+(9)   User-Name = "bob"
+(9) Finished request
+Waking up in 4.7 seconds.
+(0) Cleaning up request packet ID 48 with timestamp +130
+(1) Cleaning up request packet ID 49 with timestamp +130
+(2) Cleaning up request packet ID 50 with timestamp +130
+(3) Cleaning up request packet ID 51 with timestamp +130
+(4) Cleaning up request packet ID 52 with timestamp +130
+(5) Cleaning up request packet ID 53 with timestamp +130
+(6) Cleaning up request packet ID 54 with timestamp +130
+(7) Cleaning up request packet ID 55 with timestamp +130
+(8) Cleaning up request packet ID 56 with timestamp +130
+(9) Cleaning up request packet ID 57 with timestamp +130
+Listening on auth address 127.0.0.1 port 18120 bound to server inner-tunnel
+Listening on auth address * port 1812 bound to server default
+Listening on acct address * port 1813 bound to server default
+Listening on auth address :: port 1812 bound to server default
+Listening on acct address :: port 1813 bound to server default
+Listening on proxy address * port 57552
+Listening on proxy address :: port 33283
+Ready to process requests
+(0) Received Access-Request Id 48 from 192.168.5.1:47265 to 192.168.5.174:1812 length 183
+(0)   User-Name = "bob"
+(0)   Called-Station-Id = "56-D3-77-67-89-BF:OpenWrt"
+(0)   NAS-Port-Type = Wireless-802.11
+(0)   Service-Type = Framed-User
+(0)   NAS-Port = 1
+(0)   Calling-Station-Id = "C2-15-DA-68-A8-5D"
+(0)   Connect-Info = "CONNECT 54Mbps 802.11g"
+(0)   Acct-Session-Id = "C9A4591CB8FA224D"
+(0)   WLAN-Pairwise-Cipher = 1027076
+(0)   WLAN-Group-Cipher = 1027076
+(0)   WLAN-AKM-Suite = 1027073
+(0)   Framed-MTU = 1400
+(0)   EAP-Message = 0x0282000801626f62
+(0)   Message-Authenticator = 0x44bc19b13ccfc9fef0f00bebb07e384b
+(0) # Executing section authorize from file /etc/freeradius/3.0/sites-enabled/default
+(0)   authorize {
+(0)     policy filter_username {
+(0)       if (&User-Name) {
+(0)       if (&User-Name)  -> TRUE
+(0)       if (&User-Name)  {
+(0)         if (&User-Name =~ / /) {
+(0)         if (&User-Name =~ / /)  -> FALSE
+(0)         if (&User-Name =~ /@[^@]*@/ ) {
+(0)         if (&User-Name =~ /@[^@]*@/ )  -> FALSE
+(0)         if (&User-Name =~ /\.\./ ) {
+(0)         if (&User-Name =~ /\.\./ )  -> FALSE
+(0)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))  {
+(0)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))   -> FALSE
+(0)         if (&User-Name =~ /\.$/)  {
+(0)         if (&User-Name =~ /\.$/)   -> FALSE
+(0)         if (&User-Name =~ /@\./)  {
+(0)         if (&User-Name =~ /@\./)   -> FALSE
+(0)       } # if (&User-Name)  = notfound
+(0)     } # policy filter_username = notfound
+(0)     [preprocess] = ok
+(0)     [chap] = noop
+(0)     [mschap] = noop
+(0)     [digest] = noop
+(0) suffix: Checking for suffix after "@"
+(0) suffix: No '@' in User-Name = "bob", looking up realm NULL
+(0) suffix: No such realm "NULL"
+(0)     [suffix] = noop
+(0) eap: Peer sent EAP Response (code 2) ID 130 length 8
+(0) eap: EAP-Identity reply, returning 'ok' so we can short-circuit the rest of authorize
+(0)     [eap] = ok
+(0)   } # authorize = ok
+(0) Found Auth-Type = eap
+(0) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(0)   authenticate {
+(0) eap: Peer sent packet with method EAP Identity (1)
+(0) eap: Calling submodule eap_md5 to process data
+(0) eap_md5: Issuing MD5 Challenge
+(0) eap: Sending EAP Request (code 1) ID 131 length 22
+(0) eap: EAP session adding &reply:State = 0x81a2a84c8121ac4b
+(0)     [eap] = handled
+(0)   } # authenticate = handled
+(0) Using Post-Auth-Type Challenge
+(0) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(0)   Challenge { ... } # empty sub-section is ignored
+(0) Sent Access-Challenge Id 48 from 192.168.5.174:1812 to 192.168.5.1:47265 length 0
+(0)   EAP-Message = 0x0183001604108e703ded8646bc9c716242f4ea2f14dc
+(0)   Message-Authenticator = 0x00000000000000000000000000000000
+(0)   State = 0x81a2a84c8121ac4bb96d551ea535a6f4
+(0) Finished request
+Waking up in 4.9 seconds.
+(1) Received Access-Request Id 49 from 192.168.5.1:47265 to 192.168.5.174:1812 length 199
+(1)   User-Name = "bob"
+(1)   Called-Station-Id = "56-D3-77-67-89-BF:OpenWrt"
+(1)   NAS-Port-Type = Wireless-802.11
+(1)   Service-Type = Framed-User
+(1)   NAS-Port = 1
+(1)   Calling-Station-Id = "C2-15-DA-68-A8-5D"
+(1)   Connect-Info = "CONNECT 54Mbps 802.11g"
+(1)   Acct-Session-Id = "C9A4591CB8FA224D"
+(1)   WLAN-Pairwise-Cipher = 1027076
+(1)   WLAN-Group-Cipher = 1027076
+(1)   WLAN-AKM-Suite = 1027073
+(1)   Framed-MTU = 1400
+(1)   EAP-Message = 0x028300060319
+(1)   State = 0x81a2a84c8121ac4bb96d551ea535a6f4
+(1)   Message-Authenticator = 0xf1d460360ef1d024d576486f5cf0ac5b
+(1) session-state: No cached attributes
+(1) # Executing section authorize from file /etc/freeradius/3.0/sites-enabled/default
+(1)   authorize {
+(1)     policy filter_username {
+(1)       if (&User-Name) {
+(1)       if (&User-Name)  -> TRUE
+(1)       if (&User-Name)  {
+(1)         if (&User-Name =~ / /) {
+(1)         if (&User-Name =~ / /)  -> FALSE
+(1)         if (&User-Name =~ /@[^@]*@/ ) {
+(1)         if (&User-Name =~ /@[^@]*@/ )  -> FALSE
+(1)         if (&User-Name =~ /\.\./ ) {
+(1)         if (&User-Name =~ /\.\./ )  -> FALSE
+(1)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))  {
+(1)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))   -> FALSE
+(1)         if (&User-Name =~ /\.$/)  {
+(1)         if (&User-Name =~ /\.$/)   -> FALSE
+(1)         if (&User-Name =~ /@\./)  {
+(1)         if (&User-Name =~ /@\./)   -> FALSE
+(1)       } # if (&User-Name)  = notfound
+(1)     } # policy filter_username = notfound
+(1)     [preprocess] = ok
+(1)     [chap] = noop
+(1)     [mschap] = noop
+(1)     [digest] = noop
+(1) suffix: Checking for suffix after "@"
+(1) suffix: No '@' in User-Name = "bob", looking up realm NULL
+(1) suffix: No such realm "NULL"
+(1)     [suffix] = noop
+(1) eap: Peer sent EAP Response (code 2) ID 131 length 6
+(1) eap: No EAP Start, assuming it's an on-going EAP conversation
+(1)     [eap] = updated
+(1) sql: EXPAND %{User-Name}
+(1) sql:    --> bob
+(1) sql: SQL-User-Name set to 'bob'
+rlm_sql (sql): Closing connection (1): Hit idle_timeout, was idle for 130 seconds
+rlm_sql_mysql: Socket destructor called, closing socket
+rlm_sql (sql): Closing connection (2): Hit idle_timeout, was idle for 130 seconds
+rlm_sql_mysql: Socket destructor called, closing socket
+rlm_sql (sql): Closing connection (3): Hit idle_timeout, was idle for 130 seconds
+rlm_sql_mysql: Socket destructor called, closing socket
+rlm_sql (sql): Closing connection (4): Hit idle_timeout, was idle for 130 seconds
+rlm_sql (sql): You probably need to lower "min"
+rlm_sql_mysql: Socket destructor called, closing socket
+rlm_sql (sql): Closing connection (0): Hit idle_timeout, was idle for 130 seconds
+rlm_sql (sql): You probably need to lower "min"
+rlm_sql_mysql: Socket destructor called, closing socket
+rlm_sql (sql): Closing connection (5): Hit idle_timeout, was idle for 130 seconds
+rlm_sql (sql): You probably need to lower "min"
+rlm_sql_mysql: Socket destructor called, closing socket
+rlm_sql (sql): 0 of 0 connections in use.  You  may need to increase "spare"
+rlm_sql (sql): Opening additional connection (6), 1 of 32 pending slots used
+rlm_sql_mysql: Starting connect to MySQL server
+rlm_sql_mysql: Connected to database 'radius' on Localhost via UNIX socket, server version 5.5.5-10.3.34-MariaDB-0ubuntu0.20.04.1, protocol version 10
+rlm_sql (sql): Reserved connection (6)
+(1) sql: EXPAND SELECT id, username, attribute, value, op FROM radcheck WHERE username = '%{SQL-User-Name}' ORDER BY id
+(1) sql:    --> SELECT id, username, attribute, value, op FROM radcheck WHERE username = 'bob' ORDER BY id
+(1) sql: Executing select query: SELECT id, username, attribute, value, op FROM radcheck WHERE username = 'bob' ORDER BY id
+(1) sql: User found in radcheck table
+(1) sql: Conditional check items matched, merging assignment check items
+(1) sql:   Cleartext-Password := "hello"
+(1) sql: EXPAND SELECT id, username, attribute, value, op FROM radreply WHERE username = '%{SQL-User-Name}' ORDER BY id
+(1) sql:    --> SELECT id, username, attribute, value, op FROM radreply WHERE username = 'bob' ORDER BY id
+(1) sql: Executing select query: SELECT id, username, attribute, value, op FROM radreply WHERE username = 'bob' ORDER BY id
+rlm_sql (sql): 1 of 1 connections in use.  You  may need to increase "spare"
+rlm_sql (sql): Opening additional connection (7), 1 of 31 pending slots used
+rlm_sql_mysql: Starting connect to MySQL server
+rlm_sql_mysql: Connected to database 'radius' on Localhost via UNIX socket, server version 5.5.5-10.3.34-MariaDB-0ubuntu0.20.04.1, protocol version 10
+rlm_sql (sql): Reserved connection (7)
+rlm_sql (sql): Released connection (7)
+Need 1 more connections to reach min connections (3)
+rlm_sql (sql): Opening additional connection (8), 1 of 30 pending slots used
+rlm_sql_mysql: Starting connect to MySQL server
+rlm_sql_mysql: Connected to database 'radius' on Localhost via UNIX socket, server version 5.5.5-10.3.34-MariaDB-0ubuntu0.20.04.1, protocol version 10
+(1) sql: EXPAND SELECT groupname FROM radusergroup WHERE username = '%{SQL-User-Name}' ORDER BY priority
+(1) sql:    --> SELECT groupname FROM radusergroup WHERE username = 'bob' ORDER BY priority
+(1) sql: Executing select query: SELECT groupname FROM radusergroup WHERE username = 'bob' ORDER BY priority
+(1) sql: User not found in any groups
+rlm_sql (sql): Released connection (6)
+(1)     [sql] = ok
+(1)     [expiration] = noop
+(1)     [logintime] = noop
+(1) pap: WARNING: Auth-Type already set.  Not setting to PAP
+(1)     [pap] = noop
+(1)   } # authorize = updated
+(1) Found Auth-Type = eap
+(1) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(1)   authenticate {
+(1) eap: Expiring EAP session with state 0x81a2a84c8121ac4b
+(1) eap: Finished EAP session with state 0x81a2a84c8121ac4b
+(1) eap: Previous EAP request found for state 0x81a2a84c8121ac4b, released from the list
+(1) eap: Peer sent packet with method EAP NAK (3)
+(1) eap: Found mutually acceptable type PEAP (25)
+(1) eap: Calling submodule eap_peap to process data
+(1) eap_peap: Initiating new TLS session
+(1) eap_peap: [eaptls start] = request
+(1) eap: Sending EAP Request (code 1) ID 132 length 6
+(1) eap: EAP session adding &reply:State = 0x81a2a84c8026b14b
+(1)     [eap] = handled
+(1)   } # authenticate = handled
+(1) Using Post-Auth-Type Challenge
+(1) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(1)   Challenge { ... } # empty sub-section is ignored
+(1) Sent Access-Challenge Id 49 from 192.168.5.174:1812 to 192.168.5.1:47265 length 0
+(1)   EAP-Message = 0x018400061920
+(1)   Message-Authenticator = 0x00000000000000000000000000000000
+(1)   State = 0x81a2a84c8026b14bb96d551ea535a6f4
+(1) Finished request
+Waking up in 4.9 seconds.
+(2) Received Access-Request Id 50 from 192.168.5.1:47265 to 192.168.5.174:1812 length 334
+(2)   User-Name = "bob"
+(2)   Called-Station-Id = "56-D3-77-67-89-BF:OpenWrt"
+(2)   NAS-Port-Type = Wireless-802.11
+(2)   Service-Type = Framed-User
+(2)   NAS-Port = 1
+(2)   Calling-Station-Id = "C2-15-DA-68-A8-5D"
+(2)   Connect-Info = "CONNECT 54Mbps 802.11g"
+(2)   Acct-Session-Id = "C9A4591CB8FA224D"
+(2)   WLAN-Pairwise-Cipher = 1027076
+(2)   WLAN-Group-Cipher = 1027076
+(2)   WLAN-AKM-Suite = 1027073
+(2)   Framed-MTU = 1400
+(2)   EAP-Message = 0x0284008d198000000083160301007e0100007a03033d4e34c5c1f79e6b80d44e4375d2b1d592469536c1ebe30393d5d644d12907f800001ec02bc02fc02cc030cca9cca8c009c013c00ac014009c009d002f0035000a0100003300170000ff01000100000a00080006001d00170018000b00020100000d00140012040308040401050308050501080606010201
+(2)   State = 0x81a2a84c8026b14bb96d551ea535a6f4
+(2)   Message-Authenticator = 0x136921ffe1b845465e2fa404d60d1aca
+(2) session-state: No cached attributes
+(2) # Executing section authorize from file /etc/freeradius/3.0/sites-enabled/default
+(2)   authorize {
+(2)     policy filter_username {
+(2)       if (&User-Name) {
+(2)       if (&User-Name)  -> TRUE
+(2)       if (&User-Name)  {
+(2)         if (&User-Name =~ / /) {
+(2)         if (&User-Name =~ / /)  -> FALSE
+(2)         if (&User-Name =~ /@[^@]*@/ ) {
+(2)         if (&User-Name =~ /@[^@]*@/ )  -> FALSE
+(2)         if (&User-Name =~ /\.\./ ) {
+(2)         if (&User-Name =~ /\.\./ )  -> FALSE
+(2)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))  {
+(2)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))   -> FALSE
+(2)         if (&User-Name =~ /\.$/)  {
+(2)         if (&User-Name =~ /\.$/)   -> FALSE
+(2)         if (&User-Name =~ /@\./)  {
+(2)         if (&User-Name =~ /@\./)   -> FALSE
+(2)       } # if (&User-Name)  = notfound
+(2)     } # policy filter_username = notfound
+(2)     [preprocess] = ok
+(2)     [chap] = noop
+(2)     [mschap] = noop
+(2)     [digest] = noop
+(2) suffix: Checking for suffix after "@"
+(2) suffix: No '@' in User-Name = "bob", looking up realm NULL
+(2) suffix: No such realm "NULL"
+(2)     [suffix] = noop
+(2) eap: Peer sent EAP Response (code 2) ID 132 length 141
+(2) eap: Continuing tunnel setup
+(2)     [eap] = ok
+(2)   } # authorize = ok
+(2) Found Auth-Type = eap
+(2) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(2)   authenticate {
+(2) eap: Expiring EAP session with state 0x81a2a84c8026b14b
+(2) eap: Finished EAP session with state 0x81a2a84c8026b14b
+(2) eap: Previous EAP request found for state 0x81a2a84c8026b14b, released from the list
+(2) eap: Peer sent packet with method EAP PEAP (25)
+(2) eap: Calling submodule eap_peap to process data
+(2) eap_peap: Continuing EAP-TLS
+(2) eap_peap: Peer indicated complete TLS record size will be 131 bytes
+(2) eap_peap: Got complete TLS record (131 bytes)
+(2) eap_peap: [eaptls verify] = length included
+(2) eap_peap: (other): before SSL initialization
+(2) eap_peap: TLS_accept: before SSL initialization
+(2) eap_peap: TLS_accept: before SSL initialization
+(2) eap_peap: <<< recv TLS 1.3  [length 007e]
+(2) eap_peap: TLS_accept: SSLv3/TLS read client hello
+(2) eap_peap: >>> send TLS 1.2  [length 003d]
+(2) eap_peap: TLS_accept: SSLv3/TLS write server hello
+(2) eap_peap: >>> send TLS 1.2  [length 02ea]
+(2) eap_peap: TLS_accept: SSLv3/TLS write certificate
+(2) eap_peap: >>> send TLS 1.2  [length 014d]
+(2) eap_peap: TLS_accept: SSLv3/TLS write key exchange
+(2) eap_peap: >>> send TLS 1.2  [length 0004]
+(2) eap_peap: TLS_accept: SSLv3/TLS write server done
+(2) eap_peap: TLS_accept: Need to read more data: SSLv3/TLS write server done
+(2) eap_peap: TLS - In Handshake Phase
+(2) eap_peap: TLS - got 1164 bytes of data
+(2) eap_peap: [eaptls process] = handled
+(2) eap: Sending EAP Request (code 1) ID 133 length 1004
+(2) eap: EAP session adding &reply:State = 0x81a2a84c8327b14b
+(2)     [eap] = handled
+(2)   } # authenticate = handled
+(2) Using Post-Auth-Type Challenge
+(2) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(2)   Challenge { ... } # empty sub-section is ignored
+(2) Sent Access-Challenge Id 50 from 192.168.5.174:1812 to 192.168.5.1:47265 length 0
+(2)   EAP-Message = 0x018503ec19c00000048c160303003d020000390303a1c110bffa9a3c9bed679e529e33801d1b3c269b194f4c8d39c70bb34438a4b900c02f000011ff01000100000b0004030001020017000016030302ea0b0002e60002e30002e0308202dc308201c4a003020102021403107f3684e9d35f6585b223cfd04fcf812cc81e300d06092a864886f70d01010b050030153113301106035504030c0a636f6e74726f6c6c6572301e170d3232313131333037303132325a170d3332313131303037303132325a30153113301106035504030c0a636f6e74726f6c6c657230820122300d06092a864886f70d01010105000382010f003082010a0282010100f49fd56d2f89bbdf82313311469b397ef54a28d9bebb6b34ca66b2b40a120e167f1580072215847be08d1195a51e01cffdf7f5146adec596a6569e06fa898338d63a3e6e6dc78b77f0a2960d2a21a4179ee4e4f3ca689f3cb0704b2d83c543257d86196e279f9b64dcec4bbf1b880fe392e312d2f4616ea0a938c8
+(2)   Message-Authenticator = 0x00000000000000000000000000000000
+(2)   State = 0x81a2a84c8327b14bb96d551ea535a6f4
+(2) Finished request
+Waking up in 4.9 seconds.
+(3) Received Access-Request Id 51 from 192.168.5.1:47265 to 192.168.5.174:1812 length 199
+(3)   User-Name = "bob"
+(3)   Called-Station-Id = "56-D3-77-67-89-BF:OpenWrt"
+(3)   NAS-Port-Type = Wireless-802.11
+(3)   Service-Type = Framed-User
+(3)   NAS-Port = 1
+(3)   Calling-Station-Id = "C2-15-DA-68-A8-5D"
+(3)   Connect-Info = "CONNECT 54Mbps 802.11g"
+(3)   Acct-Session-Id = "C9A4591CB8FA224D"
+(3)   WLAN-Pairwise-Cipher = 1027076
+(3)   WLAN-Group-Cipher = 1027076
+(3)   WLAN-AKM-Suite = 1027073
+(3)   Framed-MTU = 1400
+(3)   EAP-Message = 0x028500061900
+(3)   State = 0x81a2a84c8327b14bb96d551ea535a6f4
+(3)   Message-Authenticator = 0xa6726bb6f6206d74ffba9e8a6d75a023
+(3) session-state: No cached attributes
+(3) # Executing section authorize from file /etc/freeradius/3.0/sites-enabled/default
+(3)   authorize {
+(3)     policy filter_username {
+(3)       if (&User-Name) {
+(3)       if (&User-Name)  -> TRUE
+(3)       if (&User-Name)  {
+(3)         if (&User-Name =~ / /) {
+(3)         if (&User-Name =~ / /)  -> FALSE
+(3)         if (&User-Name =~ /@[^@]*@/ ) {
+(3)         if (&User-Name =~ /@[^@]*@/ )  -> FALSE
+(3)         if (&User-Name =~ /\.\./ ) {
+(3)         if (&User-Name =~ /\.\./ )  -> FALSE
+(3)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))  {
+(3)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))   -> FALSE
+(3)         if (&User-Name =~ /\.$/)  {
+(3)         if (&User-Name =~ /\.$/)   -> FALSE
+(3)         if (&User-Name =~ /@\./)  {
+(3)         if (&User-Name =~ /@\./)   -> FALSE
+(3)       } # if (&User-Name)  = notfound
+(3)     } # policy filter_username = notfound
+(3)     [preprocess] = ok
+(3)     [chap] = noop
+(3)     [mschap] = noop
+(3)     [digest] = noop
+(3) suffix: Checking for suffix after "@"
+(3) suffix: No '@' in User-Name = "bob", looking up realm NULL
+(3) suffix: No such realm "NULL"
+(3)     [suffix] = noop
+(3) eap: Peer sent EAP Response (code 2) ID 133 length 6
+(3) eap: Continuing tunnel setup
+(3)     [eap] = ok
+(3)   } # authorize = ok
+(3) Found Auth-Type = eap
+(3) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(3)   authenticate {
+(3) eap: Expiring EAP session with state 0x81a2a84c8327b14b
+(3) eap: Finished EAP session with state 0x81a2a84c8327b14b
+(3) eap: Previous EAP request found for state 0x81a2a84c8327b14b, released from the list
+(3) eap: Peer sent packet with method EAP PEAP (25)
+(3) eap: Calling submodule eap_peap to process data
+(3) eap_peap: Continuing EAP-TLS
+(3) eap_peap: Peer ACKed our handshake fragment
+(3) eap_peap: [eaptls verify] = request
+(3) eap_peap: [eaptls process] = handled
+(3) eap: Sending EAP Request (code 1) ID 134 length 176
+(3) eap: EAP session adding &reply:State = 0x81a2a84c8224b14b
+(3)     [eap] = handled
+(3)   } # authenticate = handled
+(3) Using Post-Auth-Type Challenge
+(3) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(3)   Challenge { ... } # empty sub-section is ignored
+(3) Sent Access-Challenge Id 51 from 192.168.5.174:1812 to 192.168.5.1:47265 length 0
+(3)   EAP-Message = 0x018600b01900f9811028d7c972da0c8be4c7b2d8c7b827d2b571e7c20ca6beb413116aa07e3f9f3c50ffec4a964ac5c879ead2b1cb6d7c03a76afb3147b014ccce0f55383f111c557620f051aace7ea8a3083f561d56b12d2227afc40d7000c6e1f14b183ba37e4ca622c55f214611f3f92d7bd0de961984a1eb9f301f604e3a7e30f557726263ba3bd332bfddddff4b1275b9d97c4779550818dc4c4f83eec271ef8be121648716030300040e000000
+(3)   Message-Authenticator = 0x00000000000000000000000000000000
+(3)   State = 0x81a2a84c8224b14bb96d551ea535a6f4
+(3) Finished request
+Waking up in 4.9 seconds.
+(4) Received Access-Request Id 52 from 192.168.5.1:47265 to 192.168.5.174:1812 length 329
+(4)   User-Name = "bob"
+(4)   Called-Station-Id = "56-D3-77-67-89-BF:OpenWrt"
+(4)   NAS-Port-Type = Wireless-802.11
+(4)   Service-Type = Framed-User
+(4)   NAS-Port = 1
+(4)   Calling-Station-Id = "C2-15-DA-68-A8-5D"
+(4)   Connect-Info = "CONNECT 54Mbps 802.11g"
+(4)   Acct-Session-Id = "C9A4591CB8FA224D"
+(4)   WLAN-Pairwise-Cipher = 1027076
+(4)   WLAN-Group-Cipher = 1027076
+(4)   WLAN-AKM-Suite = 1027073
+(4)   Framed-MTU = 1400
+(4)   EAP-Message = 0x0286008819800000007e1603030046100000424104f69802ffa96d0b8a1e9ace7a40860bcb9a813bd7eadb947d829c123de8b60fe77058601e1c73d5fa4a9370d5f536e6c40d0a075c9e79108f62b1933390eae44b1403030001011603030028000000000000000087e4bf5010dd8b596efe27b4f4f56151cbd8a79ea243b1fe54fb0d195997bd98
+(4)   State = 0x81a2a84c8224b14bb96d551ea535a6f4
+(4)   Message-Authenticator = 0xa98613eb0600949362c288b154350624
+(4) session-state: No cached attributes
+(4) # Executing section authorize from file /etc/freeradius/3.0/sites-enabled/default
+(4)   authorize {
+(4)     policy filter_username {
+(4)       if (&User-Name) {
+(4)       if (&User-Name)  -> TRUE
+(4)       if (&User-Name)  {
+(4)         if (&User-Name =~ / /) {
+(4)         if (&User-Name =~ / /)  -> FALSE
+(4)         if (&User-Name =~ /@[^@]*@/ ) {
+(4)         if (&User-Name =~ /@[^@]*@/ )  -> FALSE
+(4)         if (&User-Name =~ /\.\./ ) {
+(4)         if (&User-Name =~ /\.\./ )  -> FALSE
+(4)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))  {
+(4)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))   -> FALSE
+(4)         if (&User-Name =~ /\.$/)  {
+(4)         if (&User-Name =~ /\.$/)   -> FALSE
+(4)         if (&User-Name =~ /@\./)  {
+(4)         if (&User-Name =~ /@\./)   -> FALSE
+(4)       } # if (&User-Name)  = notfound
+(4)     } # policy filter_username = notfound
+(4)     [preprocess] = ok
+(4)     [chap] = noop
+(4)     [mschap] = noop
+(4)     [digest] = noop
+(4) suffix: Checking for suffix after "@"
+(4) suffix: No '@' in User-Name = "bob", looking up realm NULL
+(4) suffix: No such realm "NULL"
+(4)     [suffix] = noop
+(4) eap: Peer sent EAP Response (code 2) ID 134 length 136
+(4) eap: Continuing tunnel setup
+(4)     [eap] = ok
+(4)   } # authorize = ok
+(4) Found Auth-Type = eap
+(4) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(4)   authenticate {
+(4) eap: Expiring EAP session with state 0x81a2a84c8224b14b
+(4) eap: Finished EAP session with state 0x81a2a84c8224b14b
+(4) eap: Previous EAP request found for state 0x81a2a84c8224b14b, released from the list
+(4) eap: Peer sent packet with method EAP PEAP (25)
+(4) eap: Calling submodule eap_peap to process data
+(4) eap_peap: Continuing EAP-TLS
+(4) eap_peap: Peer indicated complete TLS record size will be 126 bytes
+(4) eap_peap: Got complete TLS record (126 bytes)
+(4) eap_peap: [eaptls verify] = length included
+(4) eap_peap: TLS_accept: SSLv3/TLS write server done
+(4) eap_peap: <<< recv TLS 1.2  [length 0046]
+(4) eap_peap: TLS_accept: SSLv3/TLS read client key exchange
+(4) eap_peap: TLS_accept: SSLv3/TLS read change cipher spec
+(4) eap_peap: <<< recv TLS 1.2  [length 0010]
+(4) eap_peap: TLS_accept: SSLv3/TLS read finished
+(4) eap_peap: >>> send TLS 1.2  [length 0001]
+(4) eap_peap: TLS_accept: SSLv3/TLS write change cipher spec
+(4) eap_peap: >>> send TLS 1.2  [length 0010]
+(4) eap_peap: TLS_accept: SSLv3/TLS write finished
+(4) eap_peap: (other): SSL negotiation finished successfully
+(4) eap_peap: TLS - Connection Established
+(4) eap_peap: TLS-Session-Cipher-Suite = "ECDHE-RSA-AES128-GCM-SHA256"
+(4) eap_peap: TLS-Session-Version = "TLS 1.2"
+(4) eap_peap: TLS - got 51 bytes of data
+(4) eap_peap: [eaptls process] = handled
+(4) eap: Sending EAP Request (code 1) ID 135 length 57
+(4) eap: EAP session adding &reply:State = 0x81a2a84c8525b14b
+(4)     [eap] = handled
+(4)   } # authenticate = handled
+(4) Using Post-Auth-Type Challenge
+(4) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(4)   Challenge { ... } # empty sub-section is ignored
+(4) session-state: Saving cached attributes
+(4)   TLS-Session-Cipher-Suite = "ECDHE-RSA-AES128-GCM-SHA256"
+(4)   TLS-Session-Version = "TLS 1.2"
+(4) Sent Access-Challenge Id 52 from 192.168.5.174:1812 to 192.168.5.1:47265 length 0
+(4)   EAP-Message = 0x01870039190014030300010116030300289329aafbe9803467fa3a4ee72020fa0641f06df2c007165d2dbad711a60bed11eab57df6cf308d6b
+(4)   Message-Authenticator = 0x00000000000000000000000000000000
+(4)   State = 0x81a2a84c8525b14bb96d551ea535a6f4
+(4) Finished request
+Waking up in 4.8 seconds.
+(5) Received Access-Request Id 53 from 192.168.5.1:47265 to 192.168.5.174:1812 length 199
+(5)   User-Name = "bob"
+(5)   Called-Station-Id = "56-D3-77-67-89-BF:OpenWrt"
+(5)   NAS-Port-Type = Wireless-802.11
+(5)   Service-Type = Framed-User
+(5)   NAS-Port = 1
+(5)   Calling-Station-Id = "C2-15-DA-68-A8-5D"
+(5)   Connect-Info = "CONNECT 54Mbps 802.11g"
+(5)   Acct-Session-Id = "C9A4591CB8FA224D"
+(5)   WLAN-Pairwise-Cipher = 1027076
+(5)   WLAN-Group-Cipher = 1027076
+(5)   WLAN-AKM-Suite = 1027073
+(5)   Framed-MTU = 1400
+(5)   EAP-Message = 0x028700061900
+(5)   State = 0x81a2a84c8525b14bb96d551ea535a6f4
+(5)   Message-Authenticator = 0x17e43a8b0d6d3e89c37b6337fffbc9b4
+(5) Restoring &session-state
+(5)   &session-state:TLS-Session-Cipher-Suite = "ECDHE-RSA-AES128-GCM-SHA256"
+(5)   &session-state:TLS-Session-Version = "TLS 1.2"
+(5) # Executing section authorize from file /etc/freeradius/3.0/sites-enabled/default
+(5)   authorize {
+(5)     policy filter_username {
+(5)       if (&User-Name) {
+(5)       if (&User-Name)  -> TRUE
+(5)       if (&User-Name)  {
+(5)         if (&User-Name =~ / /) {
+(5)         if (&User-Name =~ / /)  -> FALSE
+(5)         if (&User-Name =~ /@[^@]*@/ ) {
+(5)         if (&User-Name =~ /@[^@]*@/ )  -> FALSE
+(5)         if (&User-Name =~ /\.\./ ) {
+(5)         if (&User-Name =~ /\.\./ )  -> FALSE
+(5)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))  {
+(5)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))   -> FALSE
+(5)         if (&User-Name =~ /\.$/)  {
+(5)         if (&User-Name =~ /\.$/)   -> FALSE
+(5)         if (&User-Name =~ /@\./)  {
+(5)         if (&User-Name =~ /@\./)   -> FALSE
+(5)       } # if (&User-Name)  = notfound
+(5)     } # policy filter_username = notfound
+(5)     [preprocess] = ok
+(5)     [chap] = noop
+(5)     [mschap] = noop
+(5)     [digest] = noop
+(5) suffix: Checking for suffix after "@"
+(5) suffix: No '@' in User-Name = "bob", looking up realm NULL
+(5) suffix: No such realm "NULL"
+(5)     [suffix] = noop
+(5) eap: Peer sent EAP Response (code 2) ID 135 length 6
+(5) eap: Continuing tunnel setup
+(5)     [eap] = ok
+(5)   } # authorize = ok
+(5) Found Auth-Type = eap
+(5) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(5)   authenticate {
+(5) eap: Expiring EAP session with state 0x81a2a84c8525b14b
+(5) eap: Finished EAP session with state 0x81a2a84c8525b14b
+(5) eap: Previous EAP request found for state 0x81a2a84c8525b14b, released from the list
+(5) eap: Peer sent packet with method EAP PEAP (25)
+(5) eap: Calling submodule eap_peap to process data
+(5) eap_peap: Continuing EAP-TLS
+(5) eap_peap: Peer ACKed our handshake fragment.  handshake is finished
+(5) eap_peap: [eaptls verify] = success
+(5) eap_peap: [eaptls process] = success
+(5) eap_peap: Session established.  Decoding tunneled attributes
+(5) eap_peap: PEAP state TUNNEL ESTABLISHED
+(5) eap: Sending EAP Request (code 1) ID 136 length 40
+(5) eap: EAP session adding &reply:State = 0x81a2a84c842ab14b
+(5)     [eap] = handled
+(5)   } # authenticate = handled
+(5) Using Post-Auth-Type Challenge
+(5) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(5)   Challenge { ... } # empty sub-section is ignored
+(5) session-state: Saving cached attributes
+(5)   TLS-Session-Cipher-Suite = "ECDHE-RSA-AES128-GCM-SHA256"
+(5)   TLS-Session-Version = "TLS 1.2"
+(5) Sent Access-Challenge Id 53 from 192.168.5.174:1812 to 192.168.5.1:47265 length 0
+(5)   EAP-Message = 0x018800281900170303001d9329aafbe98034688f532c59c53be15f3d463915a2db42f736f16fd15d
+(5)   Message-Authenticator = 0x00000000000000000000000000000000
+(5)   State = 0x81a2a84c842ab14bb96d551ea535a6f4
+(5) Finished request
+Waking up in 4.8 seconds.
+(6) Received Access-Request Id 54 from 192.168.5.1:47265 to 192.168.5.174:1812 length 232
+(6)   User-Name = "bob"
+(6)   Called-Station-Id = "56-D3-77-67-89-BF:OpenWrt"
+(6)   NAS-Port-Type = Wireless-802.11
+(6)   Service-Type = Framed-User
+(6)   NAS-Port = 1
+(6)   Calling-Station-Id = "C2-15-DA-68-A8-5D"
+(6)   Connect-Info = "CONNECT 54Mbps 802.11g"
+(6)   Acct-Session-Id = "C9A4591CB8FA224D"
+(6)   WLAN-Pairwise-Cipher = 1027076
+(6)   WLAN-Group-Cipher = 1027076
+(6)   WLAN-AKM-Suite = 1027073
+(6)   Framed-MTU = 1400
+(6)   EAP-Message = 0x028800271900170303001c00000000000000013ffca7ac4b5d4b7ef1efc3d13257387b7e081303
+(6)   State = 0x81a2a84c842ab14bb96d551ea535a6f4
+(6)   Message-Authenticator = 0x9b1a99fe6aee97d195e7ae206f890ad6
+(6) Restoring &session-state
+(6)   &session-state:TLS-Session-Cipher-Suite = "ECDHE-RSA-AES128-GCM-SHA256"
+(6)   &session-state:TLS-Session-Version = "TLS 1.2"
+(6) # Executing section authorize from file /etc/freeradius/3.0/sites-enabled/default
+(6)   authorize {
+(6)     policy filter_username {
+(6)       if (&User-Name) {
+(6)       if (&User-Name)  -> TRUE
+(6)       if (&User-Name)  {
+(6)         if (&User-Name =~ / /) {
+(6)         if (&User-Name =~ / /)  -> FALSE
+(6)         if (&User-Name =~ /@[^@]*@/ ) {
+(6)         if (&User-Name =~ /@[^@]*@/ )  -> FALSE
+(6)         if (&User-Name =~ /\.\./ ) {
+(6)         if (&User-Name =~ /\.\./ )  -> FALSE
+(6)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))  {
+(6)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))   -> FALSE
+(6)         if (&User-Name =~ /\.$/)  {
+(6)         if (&User-Name =~ /\.$/)   -> FALSE
+(6)         if (&User-Name =~ /@\./)  {
+(6)         if (&User-Name =~ /@\./)   -> FALSE
+(6)       } # if (&User-Name)  = notfound
+(6)     } # policy filter_username = notfound
+(6)     [preprocess] = ok
+(6)     [chap] = noop
+(6)     [mschap] = noop
+(6)     [digest] = noop
+(6) suffix: Checking for suffix after "@"
+(6) suffix: No '@' in User-Name = "bob", looking up realm NULL
+(6) suffix: No such realm "NULL"
+(6)     [suffix] = noop
+(6) eap: Peer sent EAP Response (code 2) ID 136 length 39
+(6) eap: Continuing tunnel setup
+(6)     [eap] = ok
+(6)   } # authorize = ok
+(6) Found Auth-Type = eap
+(6) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(6)   authenticate {
+(6) eap: Expiring EAP session with state 0x81a2a84c842ab14b
+(6) eap: Finished EAP session with state 0x81a2a84c842ab14b
+(6) eap: Previous EAP request found for state 0x81a2a84c842ab14b, released from the list
+(6) eap: Peer sent packet with method EAP PEAP (25)
+(6) eap: Calling submodule eap_peap to process data
+(6) eap_peap: Continuing EAP-TLS
+(6) eap_peap: [eaptls verify] = ok
+(6) eap_peap: Done initial handshake
+(6) eap_peap: [eaptls process] = ok
+(6) eap_peap: Session established.  Decoding tunneled attributes
+(6) eap_peap: PEAP state WAITING FOR INNER IDENTITY
+(6) eap_peap: Identity - bob
+(6) eap_peap: Got inner identity 'bob'
+(6) eap_peap: Setting default EAP type for tunneled EAP session
+(6) eap_peap: Got tunneled request
+(6) eap_peap:   EAP-Message = 0x0288000801626f62
+(6) eap_peap: Setting User-Name to bob
+(6) eap_peap: Sending tunneled request to inner-tunnel
+(6) eap_peap:   EAP-Message = 0x0288000801626f62
+(6) eap_peap:   FreeRADIUS-Proxied-To = 127.0.0.1
+(6) eap_peap:   User-Name = "bob"
+(6) Virtual server inner-tunnel received request
+(6)   EAP-Message = 0x0288000801626f62
+(6)   FreeRADIUS-Proxied-To = 127.0.0.1
+(6)   User-Name = "bob"
+(6) WARNING: Outer and inner identities are the same.  User privacy is compromised.
+(6) server inner-tunnel {
+(6)   # Executing section authorize from file /etc/freeradius/3.0/sites-enabled/inner-tunnel
+(6)     authorize {
+(6)       policy filter_username {
+(6)         if (&User-Name) {
+(6)         if (&User-Name)  -> TRUE
+(6)         if (&User-Name)  {
+(6)           if (&User-Name =~ / /) {
+(6)           if (&User-Name =~ / /)  -> FALSE
+(6)           if (&User-Name =~ /@[^@]*@/ ) {
+(6)           if (&User-Name =~ /@[^@]*@/ )  -> FALSE
+(6)           if (&User-Name =~ /\.\./ ) {
+(6)           if (&User-Name =~ /\.\./ )  -> FALSE
+(6)           if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))  {
+(6)           if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))   -> FALSE
+(6)           if (&User-Name =~ /\.$/)  {
+(6)           if (&User-Name =~ /\.$/)   -> FALSE
+(6)           if (&User-Name =~ /@\./)  {
+(6)           if (&User-Name =~ /@\./)   -> FALSE
+(6)         } # if (&User-Name)  = notfound
+(6)       } # policy filter_username = notfound
+(6)       [chap] = noop
+(6)       [mschap] = noop
+(6) suffix: Checking for suffix after "@"
+(6) suffix: No '@' in User-Name = "bob", looking up realm NULL
+(6) suffix: No such realm "NULL"
+(6)       [suffix] = noop
+(6)       update control {
+(6)         &Proxy-To-Realm := LOCAL
+(6)       } # update control = noop
+(6) eap: Peer sent EAP Response (code 2) ID 136 length 8
+(6) eap: EAP-Identity reply, returning 'ok' so we can short-circuit the rest of authorize
+(6)       [eap] = ok
+(6)     } # authorize = ok
+(6)   Found Auth-Type = eap
+(6)   # Executing group from file /etc/freeradius/3.0/sites-enabled/inner-tunnel
+(6)     authenticate {
+(6) eap: Peer sent packet with method EAP Identity (1)
+(6) eap: Calling submodule eap_mschapv2 to process data
+(6) eap_mschapv2: Issuing Challenge
+(6) eap: Sending EAP Request (code 1) ID 137 length 43
+(6) eap: EAP session adding &reply:State = 0x26e1d65b2668cc5a
+(6)       [eap] = handled
+(6)     } # authenticate = handled
+(6) } # server inner-tunnel
+(6) Virtual server sending reply
+(6)   EAP-Message = 0x0189002b1a0189002610329872e1fa1dad0fb4a90205942426ed667265657261646975732d332e302e3230
+(6)   Message-Authenticator = 0x00000000000000000000000000000000
+(6)   State = 0x26e1d65b2668cc5aad1aa801cafde476
+(6) eap_peap: Got tunneled reply code 11
+(6) eap_peap:   EAP-Message = 0x0189002b1a0189002610329872e1fa1dad0fb4a90205942426ed667265657261646975732d332e302e3230
+(6) eap_peap:   Message-Authenticator = 0x00000000000000000000000000000000
+(6) eap_peap:   State = 0x26e1d65b2668cc5aad1aa801cafde476
+(6) eap_peap: Got tunneled reply RADIUS code 11
+(6) eap_peap:   EAP-Message = 0x0189002b1a0189002610329872e1fa1dad0fb4a90205942426ed667265657261646975732d332e302e3230
+(6) eap_peap:   Message-Authenticator = 0x00000000000000000000000000000000
+(6) eap_peap:   State = 0x26e1d65b2668cc5aad1aa801cafde476
+(6) eap_peap: Got tunneled Access-Challenge
+(6) eap: Sending EAP Request (code 1) ID 137 length 74
+(6) eap: EAP session adding &reply:State = 0x81a2a84c872bb14b
+(6)     [eap] = handled
+(6)   } # authenticate = handled
+(6) Using Post-Auth-Type Challenge
+(6) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(6)   Challenge { ... } # empty sub-section is ignored
+(6) session-state: Saving cached attributes
+(6)   TLS-Session-Cipher-Suite = "ECDHE-RSA-AES128-GCM-SHA256"
+(6)   TLS-Session-Version = "TLS 1.2"
+(6) Sent Access-Challenge Id 54 from 192.168.5.174:1812 to 192.168.5.1:47265 length 0
+(6)   EAP-Message = 0x0189004a1900170303003f9329aafbe9803469ec74bb08d0f3dabe0974c70a30290d7c78b42122983a36f0529308a18a85800f30ff4c7a731be152ef5e7561ff0fe5f317200526030f91
+(6)   Message-Authenticator = 0x00000000000000000000000000000000
+(6)   State = 0x81a2a84c872bb14bb96d551ea535a6f4
+(6) Finished request
+Waking up in 4.8 seconds.
+(7) Received Access-Request Id 55 from 192.168.5.1:47265 to 192.168.5.174:1812 length 286
+(7)   User-Name = "bob"
+(7)   Called-Station-Id = "56-D3-77-67-89-BF:OpenWrt"
+(7)   NAS-Port-Type = Wireless-802.11
+(7)   Service-Type = Framed-User
+(7)   NAS-Port = 1
+(7)   Calling-Station-Id = "C2-15-DA-68-A8-5D"
+(7)   Connect-Info = "CONNECT 54Mbps 802.11g"
+(7)   Acct-Session-Id = "C9A4591CB8FA224D"
+(7)   WLAN-Pairwise-Cipher = 1027076
+(7)   WLAN-Group-Cipher = 1027076
+(7)   WLAN-AKM-Suite = 1027073
+(7)   Framed-MTU = 1400
+(7)   EAP-Message = 0x0289005d1900170303005200000000000000023016cc78a2ea879311fd18b061e9ea354ddb72e257aef10eb569bdf5c3250c9d17e8a7f97e2067746836bfb0bbdebaaf8f7183150c7d101859569844c6274dc4711633717151fbdf75ac
+(7)   State = 0x81a2a84c872bb14bb96d551ea535a6f4
+(7)   Message-Authenticator = 0x698d6b59d6bade9320985b1d9c897090
+(7) Restoring &session-state
+(7)   &session-state:TLS-Session-Cipher-Suite = "ECDHE-RSA-AES128-GCM-SHA256"
+(7)   &session-state:TLS-Session-Version = "TLS 1.2"
+(7) # Executing section authorize from file /etc/freeradius/3.0/sites-enabled/default
+(7)   authorize {
+(7)     policy filter_username {
+(7)       if (&User-Name) {
+(7)       if (&User-Name)  -> TRUE
+(7)       if (&User-Name)  {
+(7)         if (&User-Name =~ / /) {
+(7)         if (&User-Name =~ / /)  -> FALSE
+(7)         if (&User-Name =~ /@[^@]*@/ ) {
+(7)         if (&User-Name =~ /@[^@]*@/ )  -> FALSE
+(7)         if (&User-Name =~ /\.\./ ) {
+(7)         if (&User-Name =~ /\.\./ )  -> FALSE
+(7)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))  {
+(7)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))   -> FALSE
+(7)         if (&User-Name =~ /\.$/)  {
+(7)         if (&User-Name =~ /\.$/)   -> FALSE
+(7)         if (&User-Name =~ /@\./)  {
+(7)         if (&User-Name =~ /@\./)   -> FALSE
+(7)       } # if (&User-Name)  = notfound
+(7)     } # policy filter_username = notfound
+(7)     [preprocess] = ok
+(7)     [chap] = noop
+(7)     [mschap] = noop
+(7)     [digest] = noop
+(7) suffix: Checking for suffix after "@"
+(7) suffix: No '@' in User-Name = "bob", looking up realm NULL
+(7) suffix: No such realm "NULL"
+(7)     [suffix] = noop
+(7) eap: Peer sent EAP Response (code 2) ID 137 length 93
+(7) eap: Continuing tunnel setup
+(7)     [eap] = ok
+(7)   } # authorize = ok
+(7) Found Auth-Type = eap
+(7) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(7)   authenticate {
+(7) eap: Expiring EAP session with state 0x26e1d65b2668cc5a
+(7) eap: Finished EAP session with state 0x81a2a84c872bb14b
+(7) eap: Previous EAP request found for state 0x81a2a84c872bb14b, released from the list
+(7) eap: Peer sent packet with method EAP PEAP (25)
+(7) eap: Calling submodule eap_peap to process data
+(7) eap_peap: Continuing EAP-TLS
+(7) eap_peap: [eaptls verify] = ok
+(7) eap_peap: Done initial handshake
+(7) eap_peap: [eaptls process] = ok
+(7) eap_peap: Session established.  Decoding tunneled attributes
+(7) eap_peap: PEAP state phase2
+(7) eap_peap: EAP method MSCHAPv2 (26)
+(7) eap_peap: Got tunneled request
+(7) eap_peap:   EAP-Message = 0x0289003e1a0289003931fff17252c2f0c992f461fdf64e4350ff0000000000000000aae693dbba1a4ddb6dafaed1d3ad8785bb0401a82fe8af9900626f62
+(7) eap_peap: Setting User-Name to bob
+(7) eap_peap: Sending tunneled request to inner-tunnel
+(7) eap_peap:   EAP-Message = 0x0289003e1a0289003931fff17252c2f0c992f461fdf64e4350ff0000000000000000aae693dbba1a4ddb6dafaed1d3ad8785bb0401a82fe8af9900626f62
+(7) eap_peap:   FreeRADIUS-Proxied-To = 127.0.0.1
+(7) eap_peap:   User-Name = "bob"
+(7) eap_peap:   State = 0x26e1d65b2668cc5aad1aa801cafde476
+(7) Virtual server inner-tunnel received request
+(7)   EAP-Message = 0x0289003e1a0289003931fff17252c2f0c992f461fdf64e4350ff0000000000000000aae693dbba1a4ddb6dafaed1d3ad8785bb0401a82fe8af9900626f62
+(7)   FreeRADIUS-Proxied-To = 127.0.0.1
+(7)   User-Name = "bob"
+(7)   State = 0x26e1d65b2668cc5aad1aa801cafde476
+(7) WARNING: Outer and inner identities are the same.  User privacy is compromised.
+(7) server inner-tunnel {
+(7)   session-state: No cached attributes
+(7)   # Executing section authorize from file /etc/freeradius/3.0/sites-enabled/inner-tunnel
+(7)     authorize {
+(7)       policy filter_username {
+(7)         if (&User-Name) {
+(7)         if (&User-Name)  -> TRUE
+(7)         if (&User-Name)  {
+(7)           if (&User-Name =~ / /) {
+(7)           if (&User-Name =~ / /)  -> FALSE
+(7)           if (&User-Name =~ /@[^@]*@/ ) {
+(7)           if (&User-Name =~ /@[^@]*@/ )  -> FALSE
+(7)           if (&User-Name =~ /\.\./ ) {
+(7)           if (&User-Name =~ /\.\./ )  -> FALSE
+(7)           if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))  {
+(7)           if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))   -> FALSE
+(7)           if (&User-Name =~ /\.$/)  {
+(7)           if (&User-Name =~ /\.$/)   -> FALSE
+(7)           if (&User-Name =~ /@\./)  {
+(7)           if (&User-Name =~ /@\./)   -> FALSE
+(7)         } # if (&User-Name)  = notfound
+(7)       } # policy filter_username = notfound
+(7)       [chap] = noop
+(7)       [mschap] = noop
+(7) suffix: Checking for suffix after "@"
+(7) suffix: No '@' in User-Name = "bob", looking up realm NULL
+(7) suffix: No such realm "NULL"
+(7)       [suffix] = noop
+(7)       update control {
+(7)         &Proxy-To-Realm := LOCAL
+(7)       } # update control = noop
+(7) eap: Peer sent EAP Response (code 2) ID 137 length 62
+(7) eap: No EAP Start, assuming it's an on-going EAP conversation
+(7)       [eap] = updated
+(7)       [files] = noop
+(7) sql: EXPAND %{User-Name}
+(7) sql:    --> bob
+(7) sql: SQL-User-Name set to 'bob'
+rlm_sql (sql): Reserved connection (6)
+(7) sql: EXPAND SELECT id, username, attribute, value, op FROM radcheck WHERE username = '%{SQL-User-Name}' ORDER BY id
+(7) sql:    --> SELECT id, username, attribute, value, op FROM radcheck WHERE username = 'bob' ORDER BY id
+(7) sql: Executing select query: SELECT id, username, attribute, value, op FROM radcheck WHERE username = 'bob' ORDER BY id
+(7) sql: User found in radcheck table
+(7) sql: Conditional check items matched, merging assignment check items
+(7) sql:   Cleartext-Password := "hello"
+(7) sql: EXPAND SELECT id, username, attribute, value, op FROM radreply WHERE username = '%{SQL-User-Name}' ORDER BY id
+(7) sql:    --> SELECT id, username, attribute, value, op FROM radreply WHERE username = 'bob' ORDER BY id
+(7) sql: Executing select query: SELECT id, username, attribute, value, op FROM radreply WHERE username = 'bob' ORDER BY id
+rlm_sql (sql): Reserved connection (7)
+rlm_sql (sql): Released connection (7)
+(7) sql: EXPAND SELECT groupname FROM radusergroup WHERE username = '%{SQL-User-Name}' ORDER BY priority
+(7) sql:    --> SELECT groupname FROM radusergroup WHERE username = 'bob' ORDER BY priority
+(7) sql: Executing select query: SELECT groupname FROM radusergroup WHERE username = 'bob' ORDER BY priority
+(7) sql: User not found in any groups
+rlm_sql (sql): Released connection (6)
+(7)       [sql] = ok
+(7)       [expiration] = noop
+(7)       [logintime] = noop
+(7) pap: WARNING: Auth-Type already set.  Not setting to PAP
+(7)       [pap] = noop
+(7)     } # authorize = updated
+(7)   Found Auth-Type = eap
+(7)   # Executing group from file /etc/freeradius/3.0/sites-enabled/inner-tunnel
+(7)     authenticate {
+(7) eap: Expiring EAP session with state 0x26e1d65b2668cc5a
+(7) eap: Finished EAP session with state 0x26e1d65b2668cc5a
+(7) eap: Previous EAP request found for state 0x26e1d65b2668cc5a, released from the list
+(7) eap: Peer sent packet with method EAP MSCHAPv2 (26)
+(7) eap: Calling submodule eap_mschapv2 to process data
+(7) eap_mschapv2: # Executing group from file /etc/freeradius/3.0/sites-enabled/inner-tunnel
+(7) eap_mschapv2:   authenticate {
+(7) mschap: Found Cleartext-Password, hashing to create NT-Password
+(7) mschap: Creating challenge hash with username: bob
+(7) mschap: Client is using MS-CHAPv2
+(7) mschap: Adding MS-CHAPv2 MPPE keys
+(7) eap_mschapv2:     [mschap] = ok
+(7) eap_mschapv2:   } # authenticate = ok
+(7) eap_mschapv2: MSCHAP Success
+(7) eap: Sending EAP Request (code 1) ID 138 length 51
+(7) eap: EAP session adding &reply:State = 0x26e1d65b276bcc5a
+(7)       [eap] = handled
+(7)     } # authenticate = handled
+(7) } # server inner-tunnel
+(7) Virtual server sending reply
+(7)   EAP-Message = 0x018a00331a0389002e533d42384644313431434332394446393343313439383231453030424639304537433735304531383839
+(7)   Message-Authenticator = 0x00000000000000000000000000000000
+(7)   State = 0x26e1d65b276bcc5aad1aa801cafde476
+(7) eap_peap: Got tunneled reply code 11
+(7) eap_peap:   EAP-Message = 0x018a00331a0389002e533d42384644313431434332394446393343313439383231453030424639304537433735304531383839
+(7) eap_peap:   Message-Authenticator = 0x00000000000000000000000000000000
+(7) eap_peap:   State = 0x26e1d65b276bcc5aad1aa801cafde476
+(7) eap_peap: Got tunneled reply RADIUS code 11
+(7) eap_peap:   EAP-Message = 0x018a00331a0389002e533d42384644313431434332394446393343313439383231453030424639304537433735304531383839
+(7) eap_peap:   Message-Authenticator = 0x00000000000000000000000000000000
+(7) eap_peap:   State = 0x26e1d65b276bcc5aad1aa801cafde476
+(7) eap_peap: Got tunneled Access-Challenge
+(7) eap: Sending EAP Request (code 1) ID 138 length 82
+(7) eap: EAP session adding &reply:State = 0x81a2a84c8628b14b
+(7)     [eap] = handled
+(7)   } # authenticate = handled
+(7) Using Post-Auth-Type Challenge
+(7) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(7)   Challenge { ... } # empty sub-section is ignored
+(7) session-state: Saving cached attributes
+(7)   TLS-Session-Cipher-Suite = "ECDHE-RSA-AES128-GCM-SHA256"
+(7)   TLS-Session-Version = "TLS 1.2"
+(7) Sent Access-Challenge Id 55 from 192.168.5.174:1812 to 192.168.5.1:47265 length 0
+(7)   EAP-Message = 0x018a0052190017030300479329aafbe980346a5e343aa6c43cf2b145dc498eec64f593e1fe620392ab32538b0633e741fc7f942673958fd074ef264741e44bc2f37a2e15be8adab538212e707d1609e36678
+(7)   Message-Authenticator = 0x00000000000000000000000000000000
+(7)   State = 0x81a2a84c8628b14bb96d551ea535a6f4
+(7) Finished request
+Waking up in 4.8 seconds.
+(8) Received Access-Request Id 56 from 192.168.5.1:47265 to 192.168.5.174:1812 length 230
+(8)   User-Name = "bob"
+(8)   Called-Station-Id = "56-D3-77-67-89-BF:OpenWrt"
+(8)   NAS-Port-Type = Wireless-802.11
+(8)   Service-Type = Framed-User
+(8)   NAS-Port = 1
+(8)   Calling-Station-Id = "C2-15-DA-68-A8-5D"
+(8)   Connect-Info = "CONNECT 54Mbps 802.11g"
+(8)   Acct-Session-Id = "C9A4591CB8FA224D"
+(8)   WLAN-Pairwise-Cipher = 1027076
+(8)   WLAN-Group-Cipher = 1027076
+(8)   WLAN-AKM-Suite = 1027073
+(8)   Framed-MTU = 1400
+(8)   EAP-Message = 0x028a00251900170303001a00000000000000034dfb4c1cb70ea2af6de64b18b8243bf90c6e
+(8)   State = 0x81a2a84c8628b14bb96d551ea535a6f4
+(8)   Message-Authenticator = 0x0c8a6f4f2fdd11f18a27bc8d19003620
+(8) Restoring &session-state
+(8)   &session-state:TLS-Session-Cipher-Suite = "ECDHE-RSA-AES128-GCM-SHA256"
+(8)   &session-state:TLS-Session-Version = "TLS 1.2"
+(8) # Executing section authorize from file /etc/freeradius/3.0/sites-enabled/default
+(8)   authorize {
+(8)     policy filter_username {
+(8)       if (&User-Name) {
+(8)       if (&User-Name)  -> TRUE
+(8)       if (&User-Name)  {
+(8)         if (&User-Name =~ / /) {
+(8)         if (&User-Name =~ / /)  -> FALSE
+(8)         if (&User-Name =~ /@[^@]*@/ ) {
+(8)         if (&User-Name =~ /@[^@]*@/ )  -> FALSE
+(8)         if (&User-Name =~ /\.\./ ) {
+(8)         if (&User-Name =~ /\.\./ )  -> FALSE
+(8)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))  {
+(8)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))   -> FALSE
+(8)         if (&User-Name =~ /\.$/)  {
+(8)         if (&User-Name =~ /\.$/)   -> FALSE
+(8)         if (&User-Name =~ /@\./)  {
+(8)         if (&User-Name =~ /@\./)   -> FALSE
+(8)       } # if (&User-Name)  = notfound
+(8)     } # policy filter_username = notfound
+(8)     [preprocess] = ok
+(8)     [chap] = noop
+(8)     [mschap] = noop
+(8)     [digest] = noop
+(8) suffix: Checking for suffix after "@"
+(8) suffix: No '@' in User-Name = "bob", looking up realm NULL
+(8) suffix: No such realm "NULL"
+(8)     [suffix] = noop
+(8) eap: Peer sent EAP Response (code 2) ID 138 length 37
+(8) eap: Continuing tunnel setup
+(8)     [eap] = ok
+(8)   } # authorize = ok
+(8) Found Auth-Type = eap
+(8) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(8)   authenticate {
+(8) eap: Expiring EAP session with state 0x26e1d65b276bcc5a
+(8) eap: Finished EAP session with state 0x81a2a84c8628b14b
+(8) eap: Previous EAP request found for state 0x81a2a84c8628b14b, released from the list
+(8) eap: Peer sent packet with method EAP PEAP (25)
+(8) eap: Calling submodule eap_peap to process data
+(8) eap_peap: Continuing EAP-TLS
+(8) eap_peap: [eaptls verify] = ok
+(8) eap_peap: Done initial handshake
+(8) eap_peap: [eaptls process] = ok
+(8) eap_peap: Session established.  Decoding tunneled attributes
+(8) eap_peap: PEAP state phase2
+(8) eap_peap: EAP method MSCHAPv2 (26)
+(8) eap_peap: Got tunneled request
+(8) eap_peap:   EAP-Message = 0x028a00061a03
+(8) eap_peap: Setting User-Name to bob
+(8) eap_peap: Sending tunneled request to inner-tunnel
+(8) eap_peap:   EAP-Message = 0x028a00061a03
+(8) eap_peap:   FreeRADIUS-Proxied-To = 127.0.0.1
+(8) eap_peap:   User-Name = "bob"
+(8) eap_peap:   State = 0x26e1d65b276bcc5aad1aa801cafde476
+(8) Virtual server inner-tunnel received request
+(8)   EAP-Message = 0x028a00061a03
+(8)   FreeRADIUS-Proxied-To = 127.0.0.1
+(8)   User-Name = "bob"
+(8)   State = 0x26e1d65b276bcc5aad1aa801cafde476
+(8) WARNING: Outer and inner identities are the same.  User privacy is compromised.
+(8) server inner-tunnel {
+(8)   session-state: No cached attributes
+(8)   # Executing section authorize from file /etc/freeradius/3.0/sites-enabled/inner-tunnel
+(8)     authorize {
+(8)       policy filter_username {
+(8)         if (&User-Name) {
+(8)         if (&User-Name)  -> TRUE
+(8)         if (&User-Name)  {
+(8)           if (&User-Name =~ / /) {
+(8)           if (&User-Name =~ / /)  -> FALSE
+(8)           if (&User-Name =~ /@[^@]*@/ ) {
+(8)           if (&User-Name =~ /@[^@]*@/ )  -> FALSE
+(8)           if (&User-Name =~ /\.\./ ) {
+(8)           if (&User-Name =~ /\.\./ )  -> FALSE
+(8)           if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))  {
+(8)           if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))   -> FALSE
+(8)           if (&User-Name =~ /\.$/)  {
+(8)           if (&User-Name =~ /\.$/)   -> FALSE
+(8)           if (&User-Name =~ /@\./)  {
+(8)           if (&User-Name =~ /@\./)   -> FALSE
+(8)         } # if (&User-Name)  = notfound
+(8)       } # policy filter_username = notfound
+(8)       [chap] = noop
+(8)       [mschap] = noop
+(8) suffix: Checking for suffix after "@"
+(8) suffix: No '@' in User-Name = "bob", looking up realm NULL
+(8) suffix: No such realm "NULL"
+(8)       [suffix] = noop
+(8)       update control {
+(8)         &Proxy-To-Realm := LOCAL
+(8)       } # update control = noop
+(8) eap: Peer sent EAP Response (code 2) ID 138 length 6
+(8) eap: No EAP Start, assuming it's an on-going EAP conversation
+(8)       [eap] = updated
+(8)       [files] = noop
+(8) sql: EXPAND %{User-Name}
+(8) sql:    --> bob
+(8) sql: SQL-User-Name set to 'bob'
+rlm_sql (sql): Reserved connection (8)
+(8) sql: EXPAND SELECT id, username, attribute, value, op FROM radcheck WHERE username = '%{SQL-User-Name}' ORDER BY id
+(8) sql:    --> SELECT id, username, attribute, value, op FROM radcheck WHERE username = 'bob' ORDER BY id
+(8) sql: Executing select query: SELECT id, username, attribute, value, op FROM radcheck WHERE username = 'bob' ORDER BY id
+(8) sql: User found in radcheck table
+(8) sql: Conditional check items matched, merging assignment check items
+(8) sql:   Cleartext-Password := "hello"
+(8) sql: EXPAND SELECT id, username, attribute, value, op FROM radreply WHERE username = '%{SQL-User-Name}' ORDER BY id
+(8) sql:    --> SELECT id, username, attribute, value, op FROM radreply WHERE username = 'bob' ORDER BY id
+(8) sql: Executing select query: SELECT id, username, attribute, value, op FROM radreply WHERE username = 'bob' ORDER BY id
+rlm_sql (sql): Reserved connection (6)
+rlm_sql (sql): Released connection (6)
+(8) sql: EXPAND SELECT groupname FROM radusergroup WHERE username = '%{SQL-User-Name}' ORDER BY priority
+(8) sql:    --> SELECT groupname FROM radusergroup WHERE username = 'bob' ORDER BY priority
+(8) sql: Executing select query: SELECT groupname FROM radusergroup WHERE username = 'bob' ORDER BY priority
+(8) sql: User not found in any groups
+rlm_sql (sql): Released connection (8)
+(8)       [sql] = ok
+(8)       [expiration] = noop
+(8)       [logintime] = noop
+(8) pap: WARNING: Auth-Type already set.  Not setting to PAP
+(8)       [pap] = noop
+(8)     } # authorize = updated
+(8)   Found Auth-Type = eap
+(8)   # Executing group from file /etc/freeradius/3.0/sites-enabled/inner-tunnel
+(8)     authenticate {
+(8) eap: Expiring EAP session with state 0x26e1d65b276bcc5a
+(8) eap: Finished EAP session with state 0x26e1d65b276bcc5a
+(8) eap: Previous EAP request found for state 0x26e1d65b276bcc5a, released from the list
+(8) eap: Peer sent packet with method EAP MSCHAPv2 (26)
+(8) eap: Calling submodule eap_mschapv2 to process data
+(8) eap: Sending EAP Success (code 3) ID 138 length 4
+(8) eap: Freeing handler
+(8)       [eap] = ok
+(8)     } # authenticate = ok
+(8)   # Executing section post-auth from file /etc/freeradius/3.0/sites-enabled/inner-tunnel
+(8)     post-auth {
+(8) sql: EXPAND .query
+(8) sql:    --> .query
+(8) sql: Using query template 'query'
+rlm_sql (sql): Reserved connection (7)
+(8) sql: EXPAND %{User-Name}
+(8) sql:    --> bob
+(8) sql: SQL-User-Name set to 'bob'
+(8) sql: EXPAND INSERT INTO radpostauth (username, pass, reply, authdate) VALUES ( '%{SQL-User-Name}', '%{%{User-Password}:-%{Chap-Password}}', '%{reply:Packet-Type}', '%S')
+(8) sql:    --> INSERT INTO radpostauth (username, pass, reply, authdate) VALUES ( 'bob', '', 'Access-Accept', '2022-11-24 15:10:13')
+(8) sql: Executing query: INSERT INTO radpostauth (username, pass, reply, authdate) VALUES ( 'bob', '', 'Access-Accept', '2022-11-24 15:10:13')
+(8) sql: SQL query returned: success
+(8) sql: 1 record(s) updated
+rlm_sql (sql): Released connection (7)
+(8)       [sql] = ok
+(8)       if (0) {
+(8)       if (0)  -> FALSE
+(8)     } # post-auth = ok
+(8) } # server inner-tunnel
+(8) Virtual server sending reply
+(8)   MS-MPPE-Encryption-Policy = Encryption-Allowed
+(8)   MS-MPPE-Encryption-Types = RC4-40or128-bit-Allowed
+(8)   MS-MPPE-Send-Key = 0x1870cbe343f35a9c80c57c340a5ca487
+(8)   MS-MPPE-Recv-Key = 0x4df3761064022382b25fbe5ca5a15826
+(8)   EAP-Message = 0x038a0004
+(8)   Message-Authenticator = 0x00000000000000000000000000000000
+(8)   User-Name = "bob"
+(8) eap_peap: Got tunneled reply code 2
+(8) eap_peap:   MS-MPPE-Encryption-Policy = Encryption-Allowed
+(8) eap_peap:   MS-MPPE-Encryption-Types = RC4-40or128-bit-Allowed
+(8) eap_peap:   MS-MPPE-Send-Key = 0x1870cbe343f35a9c80c57c340a5ca487
+(8) eap_peap:   MS-MPPE-Recv-Key = 0x4df3761064022382b25fbe5ca5a15826
+(8) eap_peap:   EAP-Message = 0x038a0004
+(8) eap_peap:   Message-Authenticator = 0x00000000000000000000000000000000
+(8) eap_peap:   User-Name = "bob"
+(8) eap_peap: Got tunneled reply RADIUS code 2
+(8) eap_peap:   MS-MPPE-Encryption-Policy = Encryption-Allowed
+(8) eap_peap:   MS-MPPE-Encryption-Types = RC4-40or128-bit-Allowed
+(8) eap_peap:   MS-MPPE-Send-Key = 0x1870cbe343f35a9c80c57c340a5ca487
+(8) eap_peap:   MS-MPPE-Recv-Key = 0x4df3761064022382b25fbe5ca5a15826
+(8) eap_peap:   EAP-Message = 0x038a0004
+(8) eap_peap:   Message-Authenticator = 0x00000000000000000000000000000000
+(8) eap_peap:   User-Name = "bob"
+(8) eap_peap: Tunneled authentication was successful
+(8) eap_peap: SUCCESS
+(8) eap: Sending EAP Request (code 1) ID 139 length 46
+(8) eap: EAP session adding &reply:State = 0x81a2a84c8929b14b
+(8)     [eap] = handled
+(8)   } # authenticate = handled
+(8) Using Post-Auth-Type Challenge
+(8) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(8)   Challenge { ... } # empty sub-section is ignored
+(8) session-state: Saving cached attributes
+(8)   TLS-Session-Cipher-Suite = "ECDHE-RSA-AES128-GCM-SHA256"
+(8)   TLS-Session-Version = "TLS 1.2"
+(8) Sent Access-Challenge Id 56 from 192.168.5.174:1812 to 192.168.5.1:47265 length 0
+(8)   EAP-Message = 0x018b002e190017030300239329aafbe980346b72a481891a67fd6e94b2623d78208025995c8ce33c2a17b9532bc0
+(8)   Message-Authenticator = 0x00000000000000000000000000000000
+(8)   State = 0x81a2a84c8929b14bb96d551ea535a6f4
+(8) Finished request
+Waking up in 4.8 seconds.
+(9) Received Access-Request Id 57 from 192.168.5.1:47265 to 192.168.5.174:1812 length 239
+(9)   User-Name = "bob"
+(9)   Called-Station-Id = "56-D3-77-67-89-BF:OpenWrt"
+(9)   NAS-Port-Type = Wireless-802.11
+(9)   Service-Type = Framed-User
+(9)   NAS-Port = 1
+(9)   Calling-Station-Id = "C2-15-DA-68-A8-5D"
+(9)   Connect-Info = "CONNECT 54Mbps 802.11g"
+(9)   Acct-Session-Id = "C9A4591CB8FA224D"
+(9)   WLAN-Pairwise-Cipher = 1027076
+(9)   WLAN-Group-Cipher = 1027076
+(9)   WLAN-AKM-Suite = 1027073
+(9)   Framed-MTU = 1400
+(9)   EAP-Message = 0x028b002e190017030300230000000000000004a1544cd4a595b3cde74a9f0c74172a7282ecc1146626f419bdb5e8
+(9)   State = 0x81a2a84c8929b14bb96d551ea535a6f4
+(9)   Message-Authenticator = 0xfb78fe5fb15c5ad4578e7cb687b3a6b6
+(9) Restoring &session-state
+(9)   &session-state:TLS-Session-Cipher-Suite = "ECDHE-RSA-AES128-GCM-SHA256"
+(9)   &session-state:TLS-Session-Version = "TLS 1.2"
+(9) # Executing section authorize from file /etc/freeradius/3.0/sites-enabled/default
+(9)   authorize {
+(9)     policy filter_username {
+(9)       if (&User-Name) {
+(9)       if (&User-Name)  -> TRUE
+(9)       if (&User-Name)  {
+(9)         if (&User-Name =~ / /) {
+(9)         if (&User-Name =~ / /)  -> FALSE
+(9)         if (&User-Name =~ /@[^@]*@/ ) {
+(9)         if (&User-Name =~ /@[^@]*@/ )  -> FALSE
+(9)         if (&User-Name =~ /\.\./ ) {
+(9)         if (&User-Name =~ /\.\./ )  -> FALSE
+(9)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))  {
+(9)         if ((&User-Name =~ /@/) && (&User-Name !~ /@(.+)\.(.+)$/))   -> FALSE
+(9)         if (&User-Name =~ /\.$/)  {
+(9)         if (&User-Name =~ /\.$/)   -> FALSE
+(9)         if (&User-Name =~ /@\./)  {
+(9)         if (&User-Name =~ /@\./)   -> FALSE
+(9)       } # if (&User-Name)  = notfound
+(9)     } # policy filter_username = notfound
+(9)     [preprocess] = ok
+(9)     [chap] = noop
+(9)     [mschap] = noop
+(9)     [digest] = noop
+(9) suffix: Checking for suffix after "@"
+(9) suffix: No '@' in User-Name = "bob", looking up realm NULL
+(9) suffix: No such realm "NULL"
+(9)     [suffix] = noop
+(9) eap: Peer sent EAP Response (code 2) ID 139 length 46
+(9) eap: Continuing tunnel setup
+(9)     [eap] = ok
+(9)   } # authorize = ok
+(9) Found Auth-Type = eap
+(9) # Executing group from file /etc/freeradius/3.0/sites-enabled/default
+(9)   authenticate {
+(9) eap: Expiring EAP session with state 0x81a2a84c8929b14b
+(9) eap: Finished EAP session with state 0x81a2a84c8929b14b
+(9) eap: Previous EAP request found for state 0x81a2a84c8929b14b, released from the list
+(9) eap: Peer sent packet with method EAP PEAP (25)
+(9) eap: Calling submodule eap_peap to process data
+(9) eap_peap: Continuing EAP-TLS
+(9) eap_peap: [eaptls verify] = ok
+(9) eap_peap: Done initial handshake
+(9) eap_peap: [eaptls process] = ok
+(9) eap_peap: Session established.  Decoding tunneled attributes
+(9) eap_peap: PEAP state send tlv success
+(9) eap_peap: Received EAP-TLV response
+(9) eap_peap: Success
+(9) eap: Sending EAP Success (code 3) ID 139 length 4
+(9) eap: Freeing handler
+(9)     [eap] = ok
+(9)   } # authenticate = ok
+(9) # Executing section post-auth from file /etc/freeradius/3.0/sites-enabled/default
+(9)   post-auth {
+(9)     if (session-state:User-Name && reply:User-Name && request:User-Name && (reply:User-Name == request:User-Name)) {
+(9)     if (session-state:User-Name && reply:User-Name && request:User-Name && (reply:User-Name == request:User-Name))  -> FALSE
+(9)     update {
+(9)       &reply::TLS-Session-Cipher-Suite += &session-state:TLS-Session-Cipher-Suite[*] -> 'ECDHE-RSA-AES128-GCM-SHA256'
+(9)       &reply::TLS-Session-Version += &session-state:TLS-Session-Version[*] -> 'TLS 1.2'
+(9)     } # update = noop
+(9) sql: EXPAND .query
+(9) sql:    --> .query
+(9) sql: Using query template 'query'
+rlm_sql (sql): Reserved connection (8)
+(9) sql: EXPAND %{User-Name}
+(9) sql:    --> bob
+(9) sql: SQL-User-Name set to 'bob'
+(9) sql: EXPAND INSERT INTO radpostauth (username, pass, reply, authdate) VALUES ( '%{SQL-User-Name}', '%{%{User-Password}:-%{Chap-Password}}', '%{reply:Packet-Type}', '%S')
+(9) sql:    --> INSERT INTO radpostauth (username, pass, reply, authdate) VALUES ( 'bob', '', 'Access-Accept', '2022-11-24 15:10:13')
+(9) sql: Executing query: INSERT INTO radpostauth (username, pass, reply, authdate) VALUES ( 'bob', '', 'Access-Accept', '2022-11-24 15:10:13')
+(9) sql: SQL query returned: success
+(9) sql: 1 record(s) updated
+rlm_sql (sql): Released connection (8)
+(9)     [sql] = ok
+(9)     [exec] = noop
+(9)     policy remove_reply_message_if_eap {
+(9)       if (&reply:EAP-Message && &reply:Reply-Message) {
+(9)       if (&reply:EAP-Message && &reply:Reply-Message)  -> FALSE
+(9)       else {
+(9)         [noop] = noop
+(9)       } # else = noop
+(9)     } # policy remove_reply_message_if_eap = noop
+(9)   } # post-auth = ok
+(9) Sent Access-Accept Id 57 from 192.168.5.174:1812 to 192.168.5.1:47265 length 0
+(9)   MS-MPPE-Recv-Key = 0x43e3bd5850f5df4ea00bea01bd9910b9d083cdd59608cb7bf551e2288b318b8a
+(9)   MS-MPPE-Send-Key = 0x5ad598eca243c777066810e184c8b2d15f292691a8c8fe0ee79568fc388327cd
+(9)   EAP-Message = 0x038b0004
+(9)   Message-Authenticator = 0x00000000000000000000000000000000
+(9)   User-Name = "bob"
+(9) Finished request
+Waking up in 4.7 seconds.
+(0) Cleaning up request packet ID 48 with timestamp +130
+(1) Cleaning up request packet ID 49 with timestamp +130
+(2) Cleaning up request packet ID 50 with timestamp +130
+(3) Cleaning up request packet ID 51 with timestamp +130
+(4) Cleaning up request packet ID 52 with timestamp +130
+(5) Cleaning up request packet ID 53 with timestamp +130
+(6) Cleaning up request packet ID 54 with timestamp +130
+(7) Cleaning up request packet ID 55 with timestamp +130
+(8) Cleaning up request packet ID 56 with timestamp +130
+(9) Cleaning up request packet ID 57 with timestamp +130
+
