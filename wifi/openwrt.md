@@ -8,11 +8,21 @@
 当AP有局域网接口时，默认关闭WiFi。两种方式开启WiFi:
    * 网页模式 `LuCI`
    * 命令行模式, `UCI` 
+openwrt 使用的应当就是 hostapd
+* 尝试查看运行进程
+  通过网页版可以直接查看进程
+  wifi 应当是由 hostapd 启用
+  dhcp 应当是由 odhcpd 启用
+
+[Latest Hostapd](https://forum.openwrt.org/t/latest-hostapd/105099)
+
 
 ## DNS and DHCP configuration /etc/config/dhcp
+[DNS and DHCP configuration /etc/config/dhcp](https://openwrt.org/docs/guide-user/base-system/dhcp)
+
 > OpenWrt uses dnsmasq and odhcpd to serve DNS/DHCP and DHCPv6 by default.
 
-OpenWrt 默认使用`dnsmqs`提供DNS/DHCP服务，`odhcpd`提供ipv6服务。
+OpenWrt 默认使用`dnsmasq`提供DNS/DHCP服务，`odhcpd`提供ipv6服务。
 
 
 如果只是看 DHCP discover, DHCP offer, DHCP request, DHCP ACK
@@ -23,6 +33,13 @@ MAC-user, MAC-IP
 * [ ] 能否让DHCP在分配IP后，上报或存储IP与MAC的映射，
   * 先搭建
 * [ ] radius 上报或存储user与MAC的映射。
+
+* 可能我需要读 hostapd 的源码，找到如何让hostapd 发送 accounting request 包含 framed-ip-address
+
+> In addition, it has a Port Access Entity (PAE) with
+ Authenticator functionality for controlling the virtual
+ port authorization, i.e., whether to accept
+ packets from or to the station.
 
 
 ## WiFi
@@ -96,3 +113,8 @@ User-ID system 仍是基于IP来配置防火墙。ephemeral IP-to-User mappings 
    5. 接入LUCI
    6. 转发主机的端口
    7. 使用KVM igb网卡
+
+
+
+###
+

@@ -1,6 +1,5 @@
 # freeradius
 
-
 ## 无线局域网简介
 
 ### 协议
@@ -147,24 +146,26 @@ The default installation of wpa_supplicant does not include the eapol_test progr
         ```
         For all categories, remove the “file” directive and add the “sql” one. This will instruct FreeRADIUS to relly on the database for user management.
         在所有的策略中，将`file`删除，添加`sql`, 这会使`FreeRADIUS`依赖数据库查询用户数据。
-            ```shell
+        ```shell
             authorize {
-            .....
-            sql
-            ....
+                .....
+                sql
+                ....
             }
             accounting {
-            ......
-            sql
-            ....
+                ......
+                sql
+                ....
             }
-            ```
+        ```
     3. 将users文件中的用户信息注释
 3. 填充 SQL 数据库
     ```
     >  use radius;
     >  insert into radcheck (username,attribute,op,value) values("bob", "Cleartext-Password", ":=", "hello");
     ```
+    [FREERADIUS INSTALL HOWTO (4) – POPULATING TABLES](https://www.serveradminblog.com/2011/12/freeradius-install-howto-4-populating-tables/)
+    填充 user 表
 4. 测试
     `radtest bob hello 127.0.0.1 100 testing123`
 
@@ -196,3 +197,108 @@ The default installation of wpa_supplicant does not include the eapol_test progr
     更改`.conf`文件中的密码即可。
 
 ### 获取用户的ip
+参考[radiuid项目](https://github.com/PackeTsar/radiuid#docker-install-instructions)
+应当尝试，从freeradius的accounting信息查询，观察是否有 username-ip 相关信息。
+
+#### 审计
+NAS定期把审计信息发送给`radius server`，这只是一个概述，而不是流量的复制。
+
+审计信息，不包括，每个协议发了多少字节，访问了哪些网站。
+
+* 来自资料1的内容
+配置样例：某一用户一天只能用30min
+centos 和 ubuntu 下的操作都一样，唯一的区别是，在哪个文件夹找到配置文件。
+  1. 允许sqlcounter模块，
+    ```shell
+    cd /etc/raddb/mods-enabled
+    sudo ln -s ../mods-available/sqlcounter sqlcounter
+    ```
+  2. 检查 `dailycounter`
+    ```shell
+    vi /etc/raddb/mods-available/sqlcounter
+    ...
+    sqlcounter dailycounter {
+        sql_module_instance = sql
+        dialect = ${modules.sql.dialect}
+        counter_name = Daily-Session-Time
+        check_name = Max-Daily-Session
+        reply_name = Session-Timeout
+        key = User-Name
+        reset = daily
+        $INCLUDE ${modconfdir}/sql/counter/${dialect}/${.:instance}.conf
+    }
+    ```
+    `dailycounter`的配置文件位于，`mods-config/sql/counter/mysql`
+    这些配置文件中都包含配置查询语句。
+  3. 为了让 `freeradius` 使用 `dailycounter`，要调整两个文件
+    * file1
+        ```shell
+        vi /etc/raddb/sites-enabled/default
+        ...
+        # then add dailycounter under the authorize section
+        authorize {
+            .....
+            sql
+            dailycounter
+            ....
+        }
+        ```
+    * file2
+        ```shell
+        vi /etc/raddb/radiusd.conf
+        # and add the dailycounter under the section instantiate(示例), like below
+        instantiate {
+            ....
+            dailycounter
+            .....
+        }
+        ```
+  4. 调试
+    `freeradius -X`
+  5. 审计过程是如何在 freeradius 上进行的。
+    > Foremost we should understand that the radacct table is updated based on the Accounting-Request messages received by the Radius Server. 
+
+    `radacct`表是根据 Radius Server收到的`Accounting-Request`信息 更新的。
+    `mike`用户第一次登录的后，freeradius 会查询 `radacct` 表，因为这是`mike`第一次登录
+    表示空的。freeradius server发送 `Access-Accept` 信息。
+
+    NAS 回复 `Accounting-Request`信息，`radacct`表更新。
+
+    审计不成功。
+
+* 资料2的内容
+![](pic_freeradius/2022-11-25-19-53-22.png)
+    
+#### 在认证过程配置 ip pool per nas in freeradius
+审计的话，需要 对 hostapd 配置 DHCP snooping
+需要在 AP 上进行操作，可能更麻烦，若每个AP操作一下，累死了。
+认证的话，配置 ip pooling 即可
+1. 配置 sqlmodule, 创建 ip pool
+2. 创建 nas_pool_name 表，建立 nas-pool 映射
+3. 修改 virtual host 中的 post-auth 部分，通过 sql 查询获取poolname
+4. 修改 radcheck 数据, 使用 poolname
+```sql
+INSERT INTO radcheck (username, attribute, op, value) VALUES ('bob', 'Pool-Name', ':=', 'main_pool');
+```
+
+自己的英文能力确实有限，有待提高，竟然错过了真正的配置文件。
+
+ipool 与 sqlippool
+* 应当先实践 ippool
+    当是 eap-md5 时 有framed-use-ip
+    mschapv2 也有
+
+* 实践
+  1. 创建 radippool table
+  2. 配置 ./mods-available/ippool
+  3. 创建软连接
+  4. 配置 virtual server
+
+* 参考资料
+  * [USING AN IP POOL PER NAS IN FREERADIUS](https://bpg.id.au/2020/05/19/using-an-ip-pool-per-nas-in-freeradius/)
+
+#### 参考资料
+1. [How to configure FreeRadius Server for accounting.](https://medium.com/codex/how-to-configure-freeradius-server-for-accounting-cef7d7d268e)
+2. [How does RADIUS Accounting work?](https://networkradius.com/articles/2019/06/05/how-does-radius-accounting-work.html)
+3. [RADIUS RFCs and Attribute definitions](https://freeradius.org/rfc/)
+4. [FREERADIUS INSTALL HOWTO (4) – POPULATING TABLES](https://www.serveradminblog.com/2011/12/freeradius-install-howto-4-populating-tables/)

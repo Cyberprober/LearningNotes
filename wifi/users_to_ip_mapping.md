@@ -20,5 +20,195 @@ OS: 各种Linux发行版。
 解释器：python2.7。
 
 
+## 特定容器安装
+* Run the radiuid set client [parameters] command to configure FreeRADIUS to accept RADIUS accounting data from your RADIUS authenticators.
+
+* set client (ipv4|ipv6) <ip-block> <secret>     |  Set configuration elements for RADIUS clients to send accounting data FreeRADIUS
+* 下载镜像
+* 启动并进入容器
+* 查看默认配置
+* 清除防火墙规则
+* 设置radius客户端
+* 启动服务
+* 查看日志
+
+## 超时开关
+> RadiUID pushes ephemeral User-ID information to the firewall whenever new RADIUS accounting information is recieved and by default sets a timeout of 60 minutes.
+
+## THE MUNGE ENGINE
+Munge Engine 是一个规则为基础的字符串处理引擎。
+如下所示，是munge的样例配置。使munge:
+* 将双反斜线转换为单反斜线。
+* 忽略vender
+* Munge 规则形如 `<rule number>.<step number>`，规则按步执行，在规则之间留有gap以便之后扩展。
+* 0号规则必须是`match`语句，这被用来决定是否处理这一规则。
+  * match 语句若使用正则，需要在末尾添加`complete`或`partial`。部分返回，与全部返回。 
+* 除了match action，还有两组actions:
+  * Simple Actions: accept, discard
+  * Complex Actions: set-variable, assemble
+* 各种变量的含义如下：
+  * accept 终止处理，返回输入
+  * discard 终止处理，不返回输入
+  * set-variable 设置变量值，值可以是`from-match`或`from-string`
+    * 这一规则设置 的变量是跨规则有效的，后写会覆盖前写。
+  * `assemble`用于汇总之前使用的变量到一个字符串，字符串列表应按顺序提供 以空格分离
+* The `request munge-test` 在指定的输入上测试
+这一配置同时使用了两种complex actions(set-variable and assemble)，但仅使用了一种simple actions (discard)。
+
+> 注意：在101.0中，双下划线，被用四下划线来表示，转义
+
+
+## Book-freeradius beginner's guide
+> The AVPs that are included also depend on the NAS. Sometimes an NAS does not include
+required AVPs (Hostapd) and sometimes it swaps the input and output around (Chillispot).
+You are never sure what an NAS will bring to the server. Because of this it is always best to
+first test and see which AVPs are included and if the client may need extra configuration for
+the accounting to work as intended.
+
+AVPs 依赖于 NAS，检查是否需要额外的配置，使NAS发送需要的ACPS
+
+* [Hostapd radius accounting and Framed-IP-Address](https://forum.openwrt.org/t/hostapd-radius-accounting-and-framed-ip-address/17371)
+
+* [Outstanding RADIUS accounting issues](http://lists.infradead.org/pipermail/hostap/2016-January/034571.html)
+  有待解决的 RADIUS 计费问题
+  > The Framed-IP-Address should not be populated using from ARP
+  information, only from DHCP snooped information.
+  
+  IP信息不应来自 ARP, 应该来自 DHCP snooped information
+
+  > "The Framed-IP-Address AV pair (Attribute 8) is sent only if a valid
+  Dynamic Host Control Protocol (DHCP) binding exists for the host in
+  the __DHCP snooping bindings table__."
+
+  只有存在有效的DHCP绑定时才发送
+
+ [DHCP Snooping Binding Database](https://medium.com/@aita.official10/dhcp-snooping-binding-database-ff9464bfd539) 
+
+* HPE的解答[Framed IP Address Missing In Radius Packet](https://community.arubanetworks.com/blogs/esupport1/2021/09/30/framed-ip-address-missing-in-radius-packet)
+  > The dot1x and MAC authentication are both layer-2 authentication which are completed before the client starts the DHCP process to get an IP address.
+
+  .1x 和 MAC 认证都是2层协议, 在DHCP之前完成。
+  > We need to enable the ARP snooping feature or DHCP snooping feature on the switch to help the switch sniff the client IP address (after DHCP completes) from either ARP or DHCP packets.
+  需要开启`ARP snooping`或`DHCP snooping`
+
+  > For Comware V7, as the dot1x is a layer-2 protocol, the only way for the switch to put the framed IP into the accounting packet is the switch needs to know the client IP address. 
+  The switch use the ip source binding table to detect client IP address. 
+  If the dot1x client IP address is NOT in this table, switch won’t be able to see the IP and put it into the accounting packet as framed IP.
+
+  交换机将 framed IP 放进 accounting packet 的唯一方法，就是 swithch 需要知道客户端 IP 地址。
+  交换机使用 IP source binding table 来检查客户IP地址。
+  如果 .1x 客户端IP 地址不在表中，交换机就不能看到IP 并把它放进 accounting packet
+  
+  > There are two ways to add the client IP into ip source binding table. 
+  One is enable DHCP snooping and configure dhcp snooping binding record at the interface. 
+  The other way is enable the arp snooping to generate the IP source binding table for the client.
+
+  有两种方法，将 client IP 添加到 IP source binding 表，一种 是启动 DHCP snooping 另一种是启动 arp snooping.
+
+  > The framed IP is not in the accounting start packet. 
+  This is because the DHCP needs a bit time to finish. 
+  After the dot1x authentication finishes, the switch sends the RADIUS accounting start packet to the RADIUS server, while the client is obtaining IP address via DHCP. As when the accounting start packet is sent, the DHCP has not finished yet, the switch does not know the client IP address. 
+  Therefore the framed IP is not carried by the accounting start packet. After the client receives the IP address from the DHCP server, switch sends the accounting interim-update packet to the RADIUS server, with the framed IP address in it.
+
+  在认证过程结束后，switch 发送 `radius accounting start packet`。 这时DHCP还未结束。
+  在client 收到 来自 DHCP 服务器的 IP 地址后，交换机，会发送 `interim-update`包 给 RADIUS 服务器，该包包含 framed-IP
+  1. enable DHCP snooping 
+  2. enable the arp snooping
+
+
+* DHCP snooping
+  [DHCP Snooping](https://baike.baidu.com/item/DHCP%20Snooping/5217371?fr=aladdin)
+  作用是屏蔽接入网络中的非法的 DHCP 服务器。
+  即开启 DHCP Snooping 功能后，网络中的客户端只有从管理员指定的 DHCP 服务器获取 IP 地址
+  启用 DHCP Snooping 功能后，必须将 交换机上的端口设置为信任(Trust)和非信任(Untrust)状态.
+  交换机 只转发信任端口的 DHCP OFFER/ACK/NAK报文，丢弃非信任端口的 DHCP OFFER/ACK/NAK 报文，从而达到阻断非法 DHCP 服务器的目的。
+  建议将连接 DHCP 服务器的端口设置为信任端口，其他端口设置为非信任端口。
+  此外 DHCP Snooping 还会监听经过本机的 DHCP 数据包，提取其中的关键信息并生成 DHCP Binding Table 记录表，一条记录包括 IP、MAC、租约时间、端口、VLAN、类型等信息，结合 DAI(Dynamic ARP Inspection)和 IPSG(IP Source Guard)可实现ARP防欺骗和IP流量控制功能
+
+  [DHCP Snooping Binding Database](https://medium.com/@aita.official10/dhcp-snooping-binding-database-ff9464bfd539)
+  > DHCP snooping is enabled on a per-VLAN basis. By default, the feature is inactive on all VLANs. You can enable the feature on a single VLAN or a range of VLANs.
+
+  似乎与 vlan 有关。
+
+
+
+* [ ] 查看openwrt 如何实现 radius accounting 中的 framed ip address
+  不行的话，就尝试 dhcp snooping and arp snooping
+
+* hostapd
+  > Originally, hostapd was an optional user space component for Host AP
+  driver. It adds more features to the basic IEEE 802.11 management
+  included in the kernel driver: using external RADIUS authentication
+  server for MAC address based access control, IEEE 802.1X Authenticator
+  and dynamic WEP keying, RADIUS accounting, WPA/WPA2 (IEEE 802.11i/RSN)
+  Authenticator and dynamic TKIP/CCMP keying.
+
+  hostapd 是为Host AP设计的用户空间组件。使用RADIUS 认证服务器进行额外的MAC地址认证。
+  并可以进行 RADIUS accounting
+
+  * Host AP configuration for IEEE 802.1X
+
+  样例配置文件位于`hostapd/hostapd.conf`，里面有所有支持的配置选项，以及描述
+  hostapd 启动时应带上配置文件的路径
+  hostapd 有一个内置的 802.1x server
+
+* [ ] 查找关于`hostapd`进行配置的相关资料
+* [ ] 查看源码，判断`hostapd`
+  * 接入后台，对`hostapd`进行配置。
+* [ ] 或许可以尝试，针对不同的AP 分配不同的IP pools
+
+
+1. 查找关于`hostapd`进行配置的相关资料
+  * 第一个搜索结果，使用本地 radius server, 进行arp反查。
+  * [Framed-IP-Address RADIUS attribute](https://community.ui.com/questions/Framed-IP-Address-RADIUS-attribute/e201740d-99f2-40d2-8180-998c60aa23d8?page=1)
+    看起来，它似乎解决了这个问题。
+    > The usual reason to need Framed-IP-Address in the Accounting packet is to do __single-signon__ - passing the 802.1x username and the assigned IP back to a RADIUS Accounting daemon
+
+    single-signon 需要 Framed-IP-Address
+
+    好文，绝世好文，问题可能要解决了。
+
+    > This relies on the existing DHCP snooping that hostapd does, to populate Framed-IP-Address - 
+    probably wouldn't work for the first Accounting packet, but later ones would work. (Or a small delay to wait for DHCP to complete could be added.) May also interact oddly with roaming...
+
+    这一解决方案，依赖于 hostapd 的DHCP snooping 功能，
+    * [ ] 文章不可见，是否是因为未注册的原因，尝试注册
+
+3. 尝试 不同AP 分配不同的 IP pools.
+  
+
+
+
+
+
+## 源码阅读思路
+似乎问题的关键，在于radius的审计信息，没有审计信息，自然无法后的username-ip的映射
+
+有没有办法，让freeradius将相关映射信息，存入数据库，或发出
+
+
 ## 参考资料
-[radiuid](https://github.com/PackeTsar/radiuid#docker-install-instructions)
+1. [radiuid](https://github.com/PackeTsar/radiuid#docker-install-instructions)
+  利用审计
+2. [How to configure FreeRadius Server for accounting.](https://medium.com/codex/how-to-configure-freeradius-server-for-accounting-cef7d7d268e)
+  可以配置审计
+3. [How does RADIUS Accounting work?](https://networkradius.com/articles/2019/06/05/how-does-radius-accounting-work.html)
+  网络包交互过程
+4. [Framed IP Address MissingIn Radius Packet](https://community.arubanetworks.com/blogs/esupport1/2021/09/30/framed-ip-address-missing-in-radius-packet)
+  Aruba 的网络设备是 arp snooping 和 dhcp snooping 均可。
+5. [Wi-Fi /etc/config/wireless](https://openwrt.org/docs/guide-user/network/wifi/basic#common_options)
+  有radius 相关配置
+6. [DHCP Snooping Binding Database](https://medium.com/@aita.official10/dhcp-snooping-binding-database-ff9464bfd539)
+
+7. [Configuring DHCP Snooping](https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst6500/ios/12-2SXF/native/configuration/guide/swcg/snoodhcp.pdf)
+
+8. [WPA-Auth: EAP with radius AAA - Framed-IP-Address](https://community.ui.com/questions/WPA-Auth-EAP-with-radius-AAA-Framed-IP-Address/4d7de36f-36cd-4280-b600-bc1327743091)
+9. [Hostapd radius accounting and Framed-IP-Address](https://forum.openwrt.org/t/hostapd-radius-accounting-and-framed-ip-address/17371)
+10. [Outstanding RADIUS accounting issues](http://lists.infradead.org/pipermail/hostap/2016-January/034571.html)
+11. [802.1X Authentication Services Configuration Guide, Cisco IOS Release 15S](https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/sec_usr_8021x/configuration/15-s/sec-usr-8021x-15-s-book/sec-ieee-802x-rad-account.html#GUID-AA6E5C9F-BEDF-42DE-B76F-968DCC27D08D)
+  对审计的内容提到的较为详细，主要针对思科，但有借鉴意义。
+12. [A very basic (but functional) eduroam configuration](https://wiki.freeradius.org/guide/eduroam#configuration_the-outer-virtual-server_clients-conf)
+  里面并未提到审计。
+13. [How to include freeradius attribute Framed-IP-Address into logs](https://stackoverflow.com/questions/57326389/how-to-include-freeradius-attribute-framed-ip-address-into-logs/57326612#57326612)
+  提问者 在 radius server 的日志中 可以看到 wireless client 的 ip address。我的能看到吗？
+  调试模式，似乎不需要建立日志吧。最终是设置 linelog 的 `reference` 信息。
