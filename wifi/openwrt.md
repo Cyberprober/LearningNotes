@@ -22,7 +22,7 @@ openwrt 使用的应当就是 hostapd
 
 > OpenWrt uses dnsmasq and odhcpd to serve DNS/DHCP and DHCPv6 by default.
 
-OpenWrt 默认使用`dnsmasq`提供DNS/DHCP服务，`odhcpd`提供ipv6服务。
+__OpenWrt 默认使用`dnsmasq`提供DNS/DHCP服务，`odhcpd`提供ipv6服务。__
 
 
 如果只是看 DHCP discover, DHCP offer, DHCP request, DHCP ACK
@@ -57,8 +57,39 @@ MAC-user, MAC-IP
 ### FreeRADIUS
 [openwrt-FreeRADIUS](https://openwrt.org/docs/guide-user/network/wifi/freeradius)
 
+#### 在虚拟机中安装 openwrt
+[Run OpenWrt on QEMU/KVM](https://www.youtube.com/watch?v=HAC7sn4orf0)
+> 操作过于繁杂似乎并不具备可行性
 
-#### 在有线网应用802.1x
+* ssh configuration
+The SSH configuration is handled by the __Dropbear__ subsystem of uci and the configuration file is located in `/etc/config/dropbear`.
+
+应当贴出信息来源
+
+* 改变 lan ip
+[[Solved] How to correctly change router LAN’s IP address?](https://forum.openwrt.org/t/solved-how-to-correctly-change-router-lans-ip-address/21654)
+
+> Login via SSH Edit /et c/config/network directly Run /etc/init.d/network restart Done!
+
+> 应注意，用ip a add 或 change 修改 ip 似乎并不行，应按上文所述进行操作，即 修改 network 文件
+
+* OpenWrt in QEMU x86-64
+ESXi专为运行虚拟机、最大限度降低配置要求和简化部署而设计.
+> IMG/VDI/VMDK with “-hda” switch do not work with QEMU 2.x
+
+
+#### openwrt 虚拟机的配置
+配置好网桥，解决一下问题:
+* [x] 解决稳定性问题
+  重启后，网桥不能失效
+  这个大概率是可以的
+  [qemu-kvm如何创建虚拟机并设置网络](https://www.yisu.com/zixun/556276.html)
+
+* [ ] 待获取IP的虚拟机如何接入 openwrt
+  在虚拟机中 建一个网卡，在外面建一个没有 dhcp的网桥，待获取ip的vm的vnet全部接入这里
+
+
+### 在有线网应用802.1x
 [Implementing IEEE 802.1x for Wired Networks](https://www.giac.org/paper/gcwn/891/implementing-ieee-8021x-wired-networks/113734)
 [Wired 802.1X Deployment Guide](https://www.cisco.com/c/en/us/td/docs/solutions/Enterprise/Security/TrustSec_1-99/Dot1X_Deployment/Dot1x_Dep_Guide.html)
 [openwrt-Setting Up Wired 802.1X](https://forum.openwrt.org/t/setting-up-wired-802-1x/4595)
@@ -116,5 +147,4 @@ User-ID system 仍是基于IP来配置防火墙。ephemeral IP-to-User mappings 
 
 
 
-###
 
